@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 
@@ -8,7 +9,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /** --- middleware ---- */
 

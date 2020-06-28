@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "description": "",
   "private": true,
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server/app.js",
+    "build": "babel server/ --out-dir dist",
+    "start": "node dist/app.js",
+    "serve": "nodemon --exec babel-node server/app.js",
     "format": "prettier --write \"server/**/*.js\"",
     "clean": "rimraf dist",
     "lint": "npm run clean && eslint . server/",
@@ -23,14 +25,13 @@
   },
   "homepage": "https://github.com/dark-devs/express-backend-template#readme",
   "dependencies": {
-    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "config": "^3.3.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
     "express": "~4.16.1",
-    "prettier": "^2.0.5",
-    "nodemon": "^2.0.3"
+    "path": "^0.12.7",
+    "prettier": "^2.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
