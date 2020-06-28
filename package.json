@@ -5,11 +5,7 @@
   "private": true,
   "main": "server/server.js",
   "scripts": {
-    "build": "babel server/ --out-dir dist",
-    "start": "node dist/app.js",
-    "serve": "nodemon --exec babel-node server/app.js",
-    "format": "prettier --write \"server/**/*.js\"",
-    "clean": "rimraf dist",
+    "start": "node server/app.js",
     "lint": "npm run clean && eslint . server/",
     "test": "echo No test specified"
   },

@@ -1,6 +1,6 @@
-import path from 'path';
-import express from 'express';
-import bodyParser from 'body-parser';
+var path = require('path');
+var express =  require('express');
+var bodyParser = require('body-parser');
 
 const app = express();
 
@@ -17,4 +17,4 @@ app.all('*', (req, res) => {
     res.render('index');
 });
 
-export default app;
+module.exports = app;
