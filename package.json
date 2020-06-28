@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "serve": "node dist/app.js",
+    "start": "nodemon --exec babel-node server/app.js",
     "build": "babel server/ --out-dir dist",
     "format": "prettier --write \"server/**/*.js\"",
     "clean": "rimraf dist",
