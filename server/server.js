@@ -13,8 +13,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /** --- middleware ---- */
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/register', (req, res) => {
+    res.render('register');
 });
 
 app.all('*', (req, res) => {
