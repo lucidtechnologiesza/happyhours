@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /** --- middleware ---- */
 
 app.all('*', (req, res) => {
-    res.render('index');
+    res.render('home');
 });
 
 module.exports = app;
