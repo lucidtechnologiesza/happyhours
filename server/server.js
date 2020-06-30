@@ -13,6 +13,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /** --- middleware ---- */
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
 app.all('*', (req, res) => {
     res.render('home');
 });
