@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>happyHours</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <!--In order for the form to be responsive and function well-->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    
+    <!--This is for a form style-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!--To hide menue-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--This helps use to view the Form-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!--User defined css-->
+    <link rel="stylesheet" href="css/admin.css">
+
+</head>
+<body>
+
+  
+<!-- Navbar -->
+<div class="w3-top" id="home">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="home.html" class="w3-bar-item w3-button w3-padding-large w3-white w3-hover-red">Home</a>
+    <a href="home.html #gallery" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
+    <a href="home.html #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white login-trigger">Logout</a>
+    
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Gallery</a>
+    <a href="#service" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Service</a>
+    <a href="Register.html" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Register</a>
+    <!-- <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red" data-toggle="modal" data-target="#login-modal">Login</a> -->
+  </div>
+</div>
+<!--upload / or ugrade gallery -->
+
+<!--Table for registered kid-->
+  <div class="w3-container" style="padding:90px 16px">
+        <h2>Registered Leaners </h2>
+
+        <input type="text" id="myInput" onkeyup="myFunction1()" placeholder="Search for names.." title="Type in a name">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px; overflow-x:auto;">
+        <table class="w3-table "id="myTable">
+                <tr class="header">
+                    <th style="width:10%;">Update</th>
+                    <th style="width:40%;">Name</th>
+                    <th style="width:40%;">Surname</th>
+                    <th style="width:10%;">Delete</th>
+                </tr>
+                <tr>
+                    <td><button class="w3-button w3-hover-red">update</button></td>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Germany</td>
+                    <td><button class="w3-button w3-hover-red"> Delete</button></td>
+                </tr>
+                <tr>
+                    <td><button class="w3-button w3-hover-red">update</button></td>
+                    <td>Berglunds snabbkop</td>
+                    <td>Sweden</td>
+                   <td><button class="w3-button w3-hover-red"> Delete</button></td>
+                </tr>
+                <tr>
+                   <td><button class="w3-button w3-hover-red">update</button></td>
+                    <td>Island Trading</td>
+                    <td>UK</td>
+                   <td><button class="w3-button w3-hover-red"> Delete</button></td>
+                </tr>
+        </table>
+    </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
