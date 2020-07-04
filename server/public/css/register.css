@@ -4,7 +4,8 @@
         /* width: 400px; */
         /* margin: 50px auto; */
         text-align: center;
-        position: relative;
+        height: 100%;
+        /* position: relative; */
     }
     
     #msform fieldset {
@@ -48,7 +49,7 @@
     
     #msform .action-button {
         width: 100px;
-        background: #184E5F;
+        background: hsl(0, 98%, 51%);
         font-weight: bold;
         color: white;
         border: 0 none;
@@ -60,14 +61,15 @@
     
     #msform .action-button:hover,
     #msform .action-button:focus {
-        box-shadow: 0 0 0 2px white, 0 0 0 3px#184E5F;
+        box-shadow: 0 0 0 2px white, 0 0 0 3px hsl(138, 84%, 45%);
+        background-color: hsl(138, 84%, 45%);
     }
     /*headings*/
     
     .fs-title {
         font-size: 15px;
         text-transform: uppercase;
-        color: #2C3E50;
+        color: #03080e;
         margin-bottom: 10px;
     }
     
@@ -87,37 +89,39 @@
     }
     
     #progressbar li {
-        list-style-type: none;
-        color: #184E5F;
-        text-transform: uppercase;
-        font-size: 9px;
-        width: 16%;
-        float: left;
         position: relative;
+        list-style: none;
+        float: left;
+        width: 16%;
+        text-align: center;
     }
     
     #progressbar li:before {
         content: counter(step);
         counter-increment: step;
-        width: 20px;
-        line-height: 20px;
+        width: 40px;
+        height: 40px;
+        /* border: 1px solid hsl(17, 100%, 50%); */
         display: block;
-        font-size: 10px;
-        color: #333;
-        background: white;
-        border-radius: 3px;
-        margin: 0 auto 5px auto;
+        text-align: center;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        color: white;
+        background-color: hsl(0, 98%, 51%);
+        /* Center # in circle */
+        line-height: 39px;
     }
     /*progressbar connectors*/
     
     #progressbar li:after {
-        content: '';
-        width: 100%;
-        height: 2px;
-        background: white;
+        content: "";
         position: absolute;
+        width: 100%;
+        height: 1px;
+        background: hsl(0, 98%, 51%);
+        top: 20px;
+        /*half of height Parent (li) */
         left: -50%;
-        top: 9px;
         z-index: -1;
         /*put it behind the numbers*/
     }
@@ -129,11 +133,13 @@
     /*marking active/completed steps green*/
     /*The number of the step and the connector before it = green*/
     
-    #progressbar li.active:before,
+    #progressbar li.active:before {
+        background: #00E676;
+        content: "✔";
+    }
+    
     #progressbar li.active:after {
-        background: #184E5F;
-        color: white;
-        font-size: 15px;
+        background: #00E676;
     }
     /* Table */
     
@@ -329,7 +335,7 @@
     #footer .to-top {
         color: #fff;
         font-size: 30px;
-        position: fixed;
+        /* position: fixed; */
         right: 12px;
         bottom: 12px;
         height: 40px;

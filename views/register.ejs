@@ -10,8 +10,8 @@
     
 
     <!--In order for the form to be responsive and function well-->
-    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     
     <!--This is for a form style-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -25,8 +25,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!--User defined css-->
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
-    <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
 
 
 </head>
@@ -39,7 +39,6 @@
         <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-white w3-hover-red">Home</a>
         <a href="/home #gallery" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
         <a href="/home #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
-        <a href="#Register" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Register</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger" data-target="#login" data-toggle="modal">Login</a>
       </div>
 
@@ -47,7 +46,7 @@
       <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
         <a href="/home #gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Gallery</a>
         <a href="/home #service" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Service</a>
-        <a href="#Register" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Register</a>
+        <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Register</a>
         <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger"  data-target="#login" data-toggle="modal">Login</a>
       </div>
     </div>
@@ -73,7 +72,7 @@
                 <form >
                     <input type="text" name="username" class="username form-control" placeholder="Username"/>
                     <input type="password" name="password" class="password form-control" placeholder="password"/>
-                    <input class="btn login" type="submit" value="Login" />
+                    <input class="w3-button login" type="submit" value="Login" />
                 </form>
               </div>
             </div>
@@ -81,8 +80,9 @@
         </div>
 
         <!--Registration multistep form -->
-    <div class="w3-container "id="Register">
-       <h3 class="w3-center w3-border-bottom w3-border-light-grey">Regstration process</h3>
+        <div class="container-fluid">
+          <h3 class="w3-center w3-border-bottom w3-border-light-grey">Regstration process</h3>
+          <br/>
           <form id="msform">
             <!-- progressbar -->
             <ul id="progressbar">
@@ -307,6 +307,9 @@
                     </tr>
                     <tr>
                       <td><b>Registration Fee (Incl. Stationery and Short set) </b></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                     </tr>
                     <tr>
                       <td>Full Day </td>
@@ -328,6 +331,9 @@
                     </tr>
                     <tr>
                       <td><b>Registration Fee (Excl. Stationery and Short set) for Babies </b> </td>
+                       <td></td>
+                      <td></td>
+                      <td></td>
                     </tr>
                     <tr>
                       <td>Full day (6 to 12months) </td>
@@ -379,7 +385,7 @@
                     <div class="file-chooser">
                       <input class="file-chooser__input" type="file">
                     </div>
-                    <input class="file-uploader__submit-button" type="submit" value="Upload">
+                    <input class="w3-button w3-hover-red" type="button" name="upload" value="Upload">
                 </div>
                   <input type="button" name="previous" class="previous action-button" value="Previous" />
                   <input type="button" name="next" class="next action-button" value="Next" />
@@ -391,10 +397,11 @@
                 <h3 class="fs-subtitle">step 6</h3>
                 
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                   <div id="myDIV" >
+
+                <div id="myDIV" >
 
                       <div id="content">
-                        <b>FEES</b> </br/>
+                        <b>FEES</b> <br/>
                         <p>NB: Fees are payable in advance, not in arrears on or before the 2nd of each month, 
                         December included. 
                         A 10% discount will be given to one of the two or more kids from the same house with the same 
@@ -457,93 +464,24 @@
                         <p>h) Copy of Medical Aid if available </p>
                         <br>
                         <p>1. Hours are strictly 6:00 to 18h00 </p>
-                              Please do not arrive before this time without making prior arrangement the day before. 
+                            <p>  Please do not arrive before this time without making prior arrangement the day before. </p>
                         <p>2. An on the spot penalty fee of R50 will be charged every 10 min after 18h00.The staff’s working hours is stipulated until 18h00, they will receive these payments as overtime will take effect. </p>
                         <p>3. Should late picking happen more than twice for more than 5mins at the end of the month all those minutes will be added up and penalty will be charged accordingly. </p>
                         <p>4. Happy Hours is open during school holidays and closed during public holidays and has an annual shut down of three weeks during December from the 11th to 6th Jan 2016. </p>
-
-
-
                       </div>
                    </div>
-                  <p>I agree to these <a href="#">Terms and Conditions</p>
-                  <input type="submit" name="agree" class="w3-button w3-hover-red" value="Agree" />
-                  <input type="submit" name="disagree" class="w3-button w3-hover-red" value="Disagree" />
-                  
 
+                <br/>
+                <input type="button" name="agree" class="w3-button w3-hover-red" value="Agree" />
+                <input type="button" name="disagree" class="w3-button w3-hover-red" value="Disagree" />
                 </div>
+
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
                 <input type="submit" name="submit" class="submit action-button" value="Submit" />
-
             </fieldset>
           </form>
         </div>
-      </div>      
     <script src="js/register.js"></script>
 
-
-    <!--Brack footer and Contant-->
-<div class="brk w3-jumbo">
-    <img src="images/1.jpg" alt>
-</div>
-<!-- footer -->
-<footer class="-bg-footer" id="footer">
-        <div class="container-fluid">
-            <div class="row footer-align">
-                <div class="col-md-4 col-sm-4">
-                    <h5>Happy Hours</h5>
-                    <hr class="hr-foot">
-                    <div class="footer-items">
-                        <p class="footer">
-                            Happy Hours is small indie game studio based in Croatia. Founded in 2020, on a mission to make beautiful, fun and popular mobile games. 
-                        </p>
-                        <ul class="social-networks">
-                            <a href="https://www.facebook.com/" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="https://www.pinterest.com/" class="pinterest" target="_blank"><i class="fa fa-pinterest"></i></a>
-                                                                                                         <a href="https://twitter.com/" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <h5>Our contact</h5>
-                    <hr class="hr-foot">
-                    <div class="footer-items">
-                        <address>
-                                10 000 Zagreb, Zagreb
-                                <br>
-                                Zagreb, Zagreb
-                                <br>
-                                Croatia
-                                <br>
-                                <i class="fa fa-phone address"></i> www.happyhours.com
-                                <br>
-                                <i class="fa fa-fax address"></i> www.happyhours.com
-                                <br>
-                                <i class="fa fa-envelope address"></i> <a href="https://www.happyhours.com" target="_blank">www.happyhours.com</a>
-                        </address>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <h5>Open hours</h5>
-                    <hr class="hr-foot">
-                    <div class="footer-items">
-                        <ul>
-                            <li>Mon-Fri: 08:00-16:00</li>
-                            <li>Sat    : Closed</li>
-                            <li>Sun    : Closed</li> 
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-       <!-- <a class="to-top" href="#" title="toTop">
-            <i class="fa fa-chevron-up"></i> 
-        </a> -->
-    </footer>
-
-    <div class="footer-copyright">
-            <p>&copy 2020 Copyright <a href="https://www.happyhours.com" target="blank"> HappyHours</a></p>
-    </div>
 </body>
 </html>

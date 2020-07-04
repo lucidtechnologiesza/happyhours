@@ -61,15 +61,15 @@
                     
                     .register-btn {
                         background-color: #E94B3C;
-                        color: #FFFFFF;
                         font-weight: bold;
-                        width: 500px;
+                        width: 150px;
+                        font-size: 20px;
                     }
                     
                     .register-btn:hover {
-                        background-color: #aa4439;
-                        color: #FFFFFF;
+                        color: #9c9392;
                         font-weight: bold;
+                        text-decoration: none;
                     }
                     
                     .hr-h3s {
