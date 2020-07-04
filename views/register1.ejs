@@ -1,0 +1,488 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>HappyHours</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <!--In order for the form to be responsive and function well-->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    
+    <!--This is for a form style-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!--To hide menue-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--This helps use to view the Form-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!--User defined css-->
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top" id="home">
+      <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-white w3-hover-red">Home</a>
+        <a href="/home #gallery" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
+        <a href="/home #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger" data-target="#login" data-toggle="modal">Login</a>
+      </div>
+
+      <!-- Navbar on small screens -->
+      <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="/home #gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Gallery</a>
+        <a href="/home #service" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Service</a>
+        <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Register</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger"  data-target="#login" data-toggle="modal">Login</a>
+      </div>
+    </div>
+
+    <!-- Header -->
+        <div class="w3-container" id="slider">
+            <figure>
+                <img src="images/1.jpg" alt>
+                <img src="images/2.jpg" alt>
+                <img src="images/1.jpg" alt>
+                <img src="images/2.jpg" alt>
+                <img src="images/2.jpg" alt>
+            </figure>
+        </div>
+
+        <!--Login-->
+        <div id="login" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <button data-dismiss="modal" class="close">&times;</button>
+                <h4>Login</h4>
+                <form >
+                    <input type="text" name="username" class="username form-control" placeholder="Username"/>
+                    <input type="password" name="password" class="password form-control" placeholder="password"/>
+                    <input class="w3-button login" type="submit" value="Login" />
+                </form>
+              </div>
+            </div>
+          </div>  
+        </div>
+
+        <!--Registration multistep form -->
+        <div class="container-fluid">
+          <h3 class="w3-center w3-border-bottom w3-border-light-grey">Regstration process</h3>
+          <br/>
+          <form id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+              <li class="active">Child Details</li>
+              <li>Mother / Guardian’s Details </li>
+              <li>Father / Second Guardian’s Details </li>
+              <li>Please tick your choice </li>
+              <li>Upload Documents </li>
+              <li>Terms and Conditions </li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset>
+                <h2 class="fs-title">Child Details</h2>
+                <h3 class="fs-subtitle">step 1</h3>
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                      <div class="w3-half">
+                        <label > Surname</label>
+                        <input type="text"  name="firstname" placeholder="Surname">
+                      </div>
+
+                      <div class="w3-half">
+                        <label > Name</label>
+                        <input type="text" id="email" name="name" placeholder="Name">
+                      </div>
+
+                      <div class="w3-half">
+                        <label for="city"> Gender</label>
+                        <select  name="gender">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        <select>
+                      </div>
+
+                      <div class="w3-half">
+                        <label >Date of birth</label>
+                        <input type="date" name="dateofbirth" placeholder="Date of birth">
+                      </div>
+
+                      <div class="w3-half">
+                        <label > Race</label>
+                        <input type="text"  name="firstname" placeholder="Race">
+                      </div>
+
+                      <div class="w3-half">
+                        <label >Enrollment Date</label>
+                        <input type="date" name="dateofbirth" placeholder="Enrollment Date">
+                      </div>
+
+                       <div class="w3-half">
+                        <label > Religion</label>
+                        <input type="text"  name="firstname" placeholder="Religion">
+                      </div>
+
+                      <div class="w3-half">
+                        <label >Home language</label>
+                        <input type="text" name="dateofbirth" placeholder="Home language">
+                      </div>
+                      
+                      <label >Allergies and / or medical conditions </label>
+                      <textarea name="address" placeholder="Allergies and / or medical conditions"></textarea>
+
+                      <div class="w3-half">
+                        <label >Previous crèche attended</label>
+                        <input type="text" name="dateofbirth" placeholder="Previous crèche attended ">
+                      </div>
+                         <div class="w3-half">
+                        <label >Duration?</label>
+                        <input type="text" name="dateofbirth" placeholder="Duration?">
+                      </div>
+
+                      <label >Any important information for Happy Hours to know </label>
+                      <textarea name="address" placeholder="Any important information for Happy Hours to know"></textarea>
+                  </div>      
+                <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+            <fieldset>
+              <h2 class="fs-title">Mother / Guardian’s Details</h2>
+              <h3 class="fs-subtitle">step 2</h3>
+              <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                  <div class="w3-half">
+                    <label > Tite</label>
+                    <input type="text"  name="firstname" placeholder="Title">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Surname</label>
+                    <input type="text"  name="firstname" placeholder="Surname">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Name</label>
+                    <input type="text" id="email" name="name" placeholder="Name">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > ID Number</label>
+                    <input type="text" id="email" name="name" placeholder="ID Number">
+                  </div>
+                  
+                   <div class="w3-half">
+                    <label > Relationship to child</label>
+                    <input type="text" id="email" name="name" placeholder="Relationship to child">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Home telephone number</label>
+                    <input type="text"  name="firstname" placeholder="Home telephone number">
+                  </div>
+                  
+                  <div class="w3-half">
+                    <label >Residential address  </label>
+                    <textarea name="address" placeholder="Residential address "></textarea>
+                  </div>
+
+                  <div class="w3-half">
+                    <label >Postal Address  </label>
+                    <textarea name="address" placeholder="Postal Address "></textarea>
+                  </div>
+
+                  <div class="w3-half">
+                    <label > E-mail address</label>
+                    <input type="text"  name="firstname" placeholder="E-mail address">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Mom’s occupation and place of work (Compulsory) </label>
+                    <input type="text"  name="firstname" placeholder="Mom’s occupation and place of work ">
+                  </div>
+              </div>
+              <input type="button" name="previous" class="previous action-button" value="Previous" />
+              <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+            <fieldset>
+              <h2 class="fs-title">Father / Second Guardian’s Details</h2>
+              <h3 class="fs-subtitle">step 3</h3>
+              <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                  <div class="w3-half">
+                    <label > Tite</label>
+                    <input type="text"  name="firstname" placeholder="Title">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Surname</label>
+                    <input type="text"  name="firstname" placeholder="Surname">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Name</label>
+                    <input type="text" id="email" name="name" placeholder="Name">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > ID Number</label>
+                    <input type="text" id="email" name="name" placeholder="ID Number">
+                  </div>
+                  
+                   <div class="w3-half">
+                    <label > Relationship to child</label>
+                    <input type="text" id="email" name="name" placeholder="Relationship to child">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Home telephone number</label>
+                    <input type="text"  name="firstname" placeholder="Home telephone number">
+                  </div>
+                  
+                  <div class="w3-half">
+                    <label >Residential address  </label>
+                    <textarea name="address" placeholder="Residential address "></textarea>
+                  </div>
+
+                  <div class="w3-half">
+                    <label >Postal Address  </label>
+                    <textarea name="address" placeholder="Postal Address "></textarea>
+                  </div>
+
+                  <div class="w3-half">
+                    <label > E-mail address</label>
+                    <input type="text"  name="firstname" placeholder="E-mail address">
+                  </div>
+
+                  <div class="w3-half">
+                    <label > Dad’s occupation and place of work (Compulsory) </label>
+                    <input type="text"  name="firstname" placeholder="Mom’s occupation and place of work ">
+                  </div>
+
+                  <label >Someone who can be contacted in an emergency (other than parents) Compulsory  </label>
+                  <div class="w3-half">
+                    <label > 1) Full Name </label>
+                    <input type="text"  name="firstname" placeholder="Full Name">
+                  </div>
+
+                  <div class="w3-half">
+                    <label >Number </label>
+                    <input type="text"  name="firstname" placeholder="Number ">
+                  </div>
+
+                   <div class="w3-half">
+                    <label > 2) Full Name </label>
+                    <input type="text"  name="firstname" placeholder="Full Name">
+                  </div>
+
+                  <div class="w3-half">
+                    <label >Number </label>
+                    <input type="text"  name="firstname" placeholder="Number ">
+                  </div>
+              </div>
+              <input type="button" name="previous" class="previous action-button" value="Previous" />
+              <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+
+            <fieldset>
+              <h2 class="fs-title">Please tick your choice</h2>
+              <h3 class="fs-subtitle">step 4</h3>
+              <div class="w3-row-padding" style="margin:0 -16px 8px -16px; overflow-x:auto;">
+                  <table class="w3-table">
+                    <tr>
+                      <th>Service</th>
+                      <th>Monthly</th>
+                      <th>Once –off reg </th>
+                      <th>Daily 	</th>
+                    </tr>
+                    <tr>
+                      <td><b>Registration Fee (Incl. Stationery and Short set) </b></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Full Day </td>
+                       <td><input type="radio" id="Monthly" name="Full Day"></td>
+                      <td><input type="radio" id="Once –off reg" name="Full Day"></td>
+                      <td><input type="radio" id="Daily" name="Full Day"></td>
+                    </tr>
+                    <tr>
+                      <td>Half Day </td>
+                        <td><input type="radio" id="Monthly" name="Half Day"></td>
+                        <td><input type="radio" id="Once –off reg" name="Half Day"></td>
+                        <td><input type="radio" id="Daily" name="Half Day"></td>
+                    </tr>
+                    <tr>
+                      <td>Grade R </td>
+                        <td><input type="radio" id="Monthly" name="Grade R"></td>
+                        <td><input type="radio" id="Once –off reg" name="Grade R"></td>
+                        <td><input type="radio" id="Daily" name="Grade R"></td>
+                    </tr>
+                    <tr>
+                      <td><b>Registration Fee (Excl. Stationery and Short set) for Babies </b> </td>
+                       <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Full day (6 to 12months) </td>
+                        <td><input type="radio" id="Monthly" name="Registration Fee for Babies"></td>
+                        <td><input type="radio" id="Once –off reg" name="Registration Fee for Babies"></td>
+                        <td><input type="radio" id="Daily" name="Registration Fee for Babies"></td>
+                    </tr>
+                    <tr>
+                      <td>Half day (6 to 12months) </td>
+                        <td><input type="radio" id="Monthly" name="Registration Fee for Babies"></td>
+                        <td><input type="radio" id="Once –off reg" name="Registration Fee for Babies"></td>
+                        <td><input type="radio" id="Daily" name="Registration Fee for Babies"></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>After-school Care (Subject to once off reg. fee) <b></td>
+                        <td><input type="radio" id="Monthly" name="After-school Care"></td>
+                        <td><input type="radio" id="Once –off reg" name="After-school Care"></td>
+                        <td><input type="radio" id="Daily" name="After-school Care"></td>
+                    </tr>
+
+                    <tr>
+                      <td><b>Casual day and holiday care - Subject to once off reg. fee </b> </td>
+                        <td><input type="radio" id="Monthly" name="Casual day and holiday care"></td>
+                        <td><input type="radio" id="Once –off reg" name="Casual day and holiday care"></td>
+                        <td><input type="radio" id="Daily" name="Casual day and holiday care"></td>
+                    </tr>
+                    <tr>
+                      <td><b>Potty training (from 13 months) Only after Winter   </b></td>
+                        <td><input type="radio" id="Monthly" name="Potty training"></td>
+                        <td><input type="radio" id="Once –off reg" name="Potty training"></td>
+                        <td><input type="radio" id="Daily" name="Potty training"></td>
+                    </tr>
+                  </table>
+                </div>
+                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+
+            <!--File upload-->
+            <fieldset>
+                <h2 class="fs-title">Upload Documents</h2>
+                <h3 class="fs-subtitle">step 5</h3>
+                
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+                    <div class="file-uploader__message-area">
+                      <p>Select a file to upload</p>
+                    </div>
+                    <div class="file-chooser">
+                      <input class="file-chooser__input" type="file">
+                    </div>
+                    <input class="w3-button w3-hover-red" type="button" name="upload" value="Upload">
+                </div>
+                  <input type="button" name="previous" class="previous action-button" value="Previous" />
+                  <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+
+            <!--Teams and Conditions-->
+            <fieldset>
+                <h2 class="fs-title">Terms and Conditions</h2>
+                <h3 class="fs-subtitle">step 6</h3>
+                
+                <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+
+                <div id="myDIV" >
+
+                      <div id="content">
+                        <b>FEES</b> <br/>
+                        <p>NB: Fees are payable in advance, not in arrears on or before the 2nd of each month, 
+                        December included. 
+                        A 10% discount will be given to one of the two or more kids from the same house with the same 
+                        Surname registered in our Centre. However breach of any fees rules will be an immediate disqualification for the discount </p>
+                        
+                        <p>1. Registration fee of R600 is payable. </p>
+
+                        <p>2. Registration includes Stationery and a T-shirt and short (One year and older) </P>
+
+                        <p>3. 10% discount is applicable for fees paid in advance for the year.</p>
+
+                        <p>4. If fees are not paid by the 2nd of every month services will be suspended immediately, meaning the child will be sent away with whoever is bringing the child and won’t be allowed on the premises until all fees are paid in full.
+                              NB :( Except if a satisfactory arrangement is made in the office) </p>
+
+                        <p>5. The full amount is payable in December and no notice from October will be accepted. </p>
+
+                        <p>6. Should you decide not to pay for December, you will be required to pay from where you left of including the current registration fee for the New Year.</p>
+
+                        <p>7. All outstanding fees are subject to a collection commission which includes attorney/client and tracing fees, which will be for the account of the client. </p>
+
+                        <p>8. <b>A R200.00 penalty will be charged for fees paid after the 2nd day of the month</b> except if the 2nd falls on a weekend or public holiday but the fees must be paid on the day the child comes to school, be it the3rd or the 4th .</p>
+                        <p>9. <b>No fees- No attendance</b> </p>
+                              <p><b>NB: Grade R Dec fees to be paid in full on or before the 11th month.</b></p>
+                              <p><b>EFT payment is preferred NO CASH WILL BE ALLOWED</b></p> 
+                        <p><b>9.1 NB: Fees subject to annual increase </p>
+                              <p>Banking details: Happy Hours Day Care </p>
+                              <p>Bank name</p>
+                              <p>Acc no. ________________ </p>
+                              <p>Branch code ___________</p>
+                              <p>Account type</p>
+                              <br>
+                              <p>To avoid embarrassment please bring the child with proof of payment </b></p>
+                              </br>
+                        <p>10. Should you wish to terminate your child’s attendance, one calendar months’ notice is required, before October. </p>
+                        <p>11. Under no circumstance will refund be given. </p>
+                        <p>12. Half day fees are applicable up and until 13h00.</p> 
+                        <p>13. Extra mural activities and excursions, photoshoots are educational and compulsory. </p>
+                        <p>14. Uniform is available at school </p>
+                        <p>4x Printed T -shirts and a shorts @ R450 </p>
+                        <p>1x Printed Tracksuit @ R200 </p>
+                        <p>1x Printed Junior backpack @ R120</p>
+
+                        <h3>General-Rules</h3> 
+                        <p>Forms To be filled in full and below documents to be submitted on or before the child starts otherwise your child won’t be admitted. </p>
+
+                        <p>a) Application form (Signed) </p>
+
+                        <p>b) Consent and Indemnity </p>
+
+                        <p>c) Copy of Parent/s ID or Passport</p> 
+
+                        <p>d) Proof of payment </p>
+
+                        <p>e) Proof of Residence </p>
+
+                        <p>f) Clinic card </p>
+
+                        <p>g) Birth Certificate</p> 
+
+                        <p>h) Copy of Medical Aid if available </p>
+                        <br>
+                        <p>1. Hours are strictly 6:00 to 18h00 </p>
+                            <p>  Please do not arrive before this time without making prior arrangement the day before. </p>
+                        <p>2. An on the spot penalty fee of R50 will be charged every 10 min after 18h00.The staff’s working hours is stipulated until 18h00, they will receive these payments as overtime will take effect. </p>
+                        <p>3. Should late picking happen more than twice for more than 5mins at the end of the month all those minutes will be added up and penalty will be charged accordingly. </p>
+                        <p>4. Happy Hours is open during school holidays and closed during public holidays and has an annual shut down of three weeks during December from the 11th to 6th Jan 2016. </p>
+                      </div>
+                   </div>
+
+                <br/>
+                <input type="button" name="agree" class="w3-button w3-hover-red" value="Agree" />
+                <input type="button" name="disagree" class="w3-button w3-hover-red" value="Disagree" />
+                </div>
+
+                <input type="button" name="previous" class="previous action-button" value="Previous" />
+                <input type="submit" name="submit" class="submit action-button" value="Submit" />
+            </fieldset>
+          </form>
+        </div>
+    <script src="js/register.js"></script>
+
+</body>
+</html>
