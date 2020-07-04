@@ -8,12 +8,20 @@ const con = mysql.createConnection(
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    reconnect: true
   }
 );
 
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
+
+// console.log(con);
+
 /*                                        Queries                                                 */
-const Sql = `CREATE TABLE IF NOT EXISTS sql2352021.happy_hours(
+const Sql = `CREATE TABLE IF NOT EXISTS heroku_b72c9f1df3e1f56.happy_hours(
   user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
@@ -66,7 +74,8 @@ con.connect((connectErr) => {
     console.log(`${connectErr} `)
     throw connectErr;
   }
-
+  console.log("CONNECTED TO DATABASE " + con["database"])
+  
   con.query(
     `${Sql};`,
     (UsersErr) => {
@@ -81,7 +90,7 @@ var HappyHours = {};
 HappyHours.insert = function (data) {
   return new Promise(function(resolve, reject) {
     con.query(
-      'INSERT INTO sql2352021.happy_hours SET ?',
+      'INSERT INTO con.database.happy_hours SET ?',
       data,
       function(error, results) {
         if (error) return reject(error);
