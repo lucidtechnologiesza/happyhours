@@ -2,7 +2,7 @@ var path = require('path');
 var express =  require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-// var db = require('./config/db');
+var db = require('./config/db');
 var mail = require('./config/mail');
 
 const app = express();
