@@ -36,8 +36,6 @@ $(".next").click(function() {
             current_fs.hide();
             animating = false;
         },
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
     });
 });
 
@@ -71,14 +69,11 @@ $(".previous").click(function() {
             current_fs.hide();
             animating = false;
         },
-        //this comes from the custom easing plugin
-        easing: 'easeInOutBack'
+
     });
 });
 
-$(".submit").click(function() {
-    return false;
-})
+
 
 // Used to toggle the menu on small screens when clicking on the menu button
 function myFunction() {
