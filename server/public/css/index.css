@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
 }
-
+body{min-width:100px;}
 html {
     height: 100%;
     /*Image only BG fallback*/

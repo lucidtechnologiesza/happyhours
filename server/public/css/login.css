@@ -1,6 +1,6 @@
  /* login */
  /*Trigger Button*/
- 
+ body{min-width:100px;}
  .login-trigger {
      font-weight: bold;
      color: #fff;

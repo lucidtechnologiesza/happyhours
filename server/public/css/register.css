@@ -7,7 +7,7 @@
         height: 100%;
         /* position: relative; */
     }
-    
+    body{min-width:200px;}
     #msform fieldset {
         background: white;
         border: 0 none;
