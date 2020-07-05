@@ -33,7 +33,7 @@ var db_config =  {
     });
   }
   dbConnect();
-  db_config.DB_NAME
+  
 /*                                        Queries                                                 */
 const Sql = `CREATE TABLE IF NOT EXISTS` + `heroku_5ae52ed6974f279` + `.happy_hours(
   user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
