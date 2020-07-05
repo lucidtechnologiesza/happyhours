@@ -103,5 +103,4 @@ app.post('/register',  upload.single('file'), async (req, res) => {
 app.all('*', (req, res) => {
     res.render('home');
 });
-
 module.exports = app;
