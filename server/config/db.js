@@ -35,7 +35,7 @@ var db_config =  {
   dbConnect();
   
 /*                                        Queries                                                 */
-const Sql = `CREATE TABLE IF NOT EXISTS` + `heroku_5ae52ed6974f279` + `.happy_hours(
+const Sql = `CREATE TABLE IF NOT EXISTS` + db_config.DB_NAME + `.happy_hours(
   user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
