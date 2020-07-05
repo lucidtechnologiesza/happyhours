@@ -15,7 +15,6 @@ var db_config =  {
   function dbConnect() {
     con = mysql.createConnection(db_config); // Recreate the connection, since
                                                     // the old one cannot be reused.
-  
     con.connect(function(err) {              // The server is either down
       if(err) {                                     // or restarting (takes a while sometimes).
         console.log('error when connecting to db:', err);
@@ -35,7 +34,7 @@ var db_config =  {
   dbConnect();
   
 /*                                        Queries                                                 */
-const Sql = `CREATE TABLE IF NOT EXISTS` + db_config.DB_NAME + `.happy_hours(
+const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
   user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
