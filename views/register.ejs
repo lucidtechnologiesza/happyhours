@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>HappyHours</title>
+  <title>Happy Hours</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -56,6 +56,13 @@
     </div>
   </div>
 
+  <% if (status) {%>
+    <div style="padding-top: 5%; text-align: center;"
+      class="alert alert-<%=type%> alert-dismissible fade show">
+      <%=message%>
+      <button type="button" class="close" data-dismiss="alert">&times;</button> 
+    </div>
+  <%}%>
   <!-- Header -->
   <div class="w3-container" id="slider">
     <figure>
@@ -74,7 +81,7 @@
         <div class="modal-body">
           <button data-dismiss="modal" class="close">&times;</button>
           <h4>Login</h4>
-          <form>
+          <form action="login" method="POST">
             <input type="text" name="username" class="username form-control" placeholder="Username" />
             <input type="password" name="password" class="password form-control" placeholder="password" />
             <input class="w3-button login" type="submit" value="Login" />
@@ -99,7 +106,7 @@
         <li>Upload Documents </li>
       </ul>
       <!-- fieldsets -->
-      <!-- <fieldset>
+      <fieldset>
                 <h2 class="fs-title">Child Details</h2>
                 <h3 class="fs-subtitle">step 1</h3>
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
@@ -379,7 +386,7 @@
             </fieldset>
 
 
-            <!--Teams and Conditions
+            <!--Teams and Conditions -->
             <fieldset>
                 <h2 class="fs-title">Terms and Conditions</h2>
                 <h3 class="fs-subtitle">step 5</h3>
@@ -466,7 +473,7 @@
 
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
                 <input type="button" name="next" class="next action-button" value="Next" />
-            </fieldset> -->
+            </fieldset>
       <!--File upload-->
       <fieldset>
         <h2 class="fs-title">Upload Documents</h2>
@@ -481,29 +488,46 @@
           <div>
             <div class="file-chooser w3-half">
               <label for="pop">Proof of payment</label>
-             <input id="proof_of_pay" class="file-chooser__input" type="file" name="proof_of_pay" >
+             <input id="proof_of_pay"
+                    class="file-chooser__input"
+                    type="file" name="proof_of_pay"
+                    accept="application/pdf" required>
             </div>
             <div class="file-chooser w3-half">
-              <label for="id_passport" name="id_passport">Copy of Parent's ID or Passport</label>
-              <input id="id_passport" name="id_passport" class="file-chooser__input" type="file">
+              <label for="id_passport" name="id_passport">Copy of Parent's ID or Passport <small>*both gaudians if applicable</small></label>
+              <input  id="id_passport"
+                      name="id_passport"
+                      class="file-chooser__input"
+                      type="file" multiple accept="application/pdf" required>
             </div>
             <div class="file-chooser w3-half">
               <label for="prove_of_residence">Proof of residence</label>
-              <input id="prove_of_residence" name="prove_of_residence" class="file-chooser__input" type="file">
+              <input  id="prove_of_residence"
+                      name="prove_of_residence"
+                      class="file-chooser__input"
+                      type="file" accept="application/pdf" required>
             </div>
             <div class="file-chooser w3-half">
               <label for="cliic_card">Clinc card</label>
-             <input id="cliic_card" name="cliic_card" class="file-chooser__input" type="file" >
+             <input id="cliic_card"
+                    name="cliic_card"
+                    class="file-chooser__input"
+                    type="file" accept="application/pdf" required>
             </div>
             <div class="file-chooser w3-half">
               <label for="certificate">Birth Certificate</label>
-              <input id="certificate" name="certificate" class="file-chooser__input" type="file">
+              <input  id="certificate"
+                      name="certificate"
+                      class="file-chooser__input"
+                      type="file" accept="application/pdf" required>
             </div>
             <div class="file-chooser w3-half">
               <label for="medical">Copy of Medical Aid if available</label>
-              <input id="medical" name="medical" class="file-chooser__input" type="file">
+              <input  id="medical"  name="medical"
+                      class="file-chooser__input"
+                      type="file" accept="application/pdf" required>
             </div>
-            <input class="w3-button w3-hover-red" type="button" name="upload" value="Upload">
+            <!-- <input class="w3-button w3-hover-red" type="button" name="upload" value="Upload" accept="application/pdf"> -->
           </div>
         </div>
         <input type="button" name="previous" class="previous action-button" value="Previous" />

@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
   destination: function (req, file, cb) {
 
     if (file.fieldname == 'proof_of_pay') cb(null, './public/uploads/pop')
-
+ 
     if (file.fieldname == 'id_passport') cb(null, './public/uploads/id_passport')
 
     if (file.fieldname == 'prove_of_residence') cb(null, './public/uploads/por')
@@ -65,9 +65,6 @@ function checkFileType(file, cb) {
   }
 }
 
-app.get('/register', (req, res) => {
-  res.render('register');
-});
 
 app.get('/admin', (req, res) => {
   res.render('admin');
@@ -78,15 +75,36 @@ app.post('/login', (req, res) => {
   res.render('home');
 });
 
+app.get('/register', (req, res) => {
+  res.render('register', {
+    status: false,
+    type: 'primary',
+    message: ''
+  });
+});
+
 app.post('/register', async (req, res) => {
+  let progress = {
+    status: false,
+    type: '',
+    message: ''
+  };
 
   upload(req, res, async (err) => {
     if (err instanceof multer.MulterError) {
-      console.log(err);
-      res.status(400).render('register')
+      if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+        progress.status = true;
+        progress.type = 'danger'
+        progress.message = 'Form not subimitted, Please do not provide not more than 2 copy of passport or ID'
+        console.log('multer: ', err);
+        res.status(400).render('register', progress)
+      }
     } else if (err) {
-      console.log("sever error: ", err);
-      res.status(500).render();
+      progress.status = true;
+      progress.type = 'danger'
+      progress.message = 'Form not subimitted, Please provide valid documents...'
+      console.log('error: ', err);
+      res.status(500).render('resigster', progress)
     } else {
       try {
         // await db.insert({
@@ -143,6 +161,7 @@ app.post('/register', async (req, res) => {
 
 
         console.log(req.files); // use this to store the file names in the database.
+        res.status(200).render('register', progress)
 
       } catch (error) {
         console.log(error.message);
