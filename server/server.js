@@ -65,12 +65,6 @@ function checkFileType(file, cb) {
   }
 }
 
-
-app.get('/admin', (req, res) => {
-
-  res.render('admin');
-})
-
 app.post('/login', (req, res) => {
   console.log(req.body);
   res.render('home');
@@ -78,10 +72,11 @@ app.post('/login', (req, res) => {
 
 
 app.get('/admin', async (req, res) => {
-  const data = await db.getData();
-  res.render('admin', {
-    data : data
-  });
+  let info = {};
+  var data = await db.getData();
+  info.users = data;
+  console.log(info, "hey ");
+  res.render('admin', info);
 });
 
 app.get('/register', (req, res) => {
