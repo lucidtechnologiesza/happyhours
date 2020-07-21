@@ -103,7 +103,7 @@ var HappyHours = {};
 HappyHours.insert = function (data) {
   return new Promise(function(resolve, reject) {
     con.query(
-      'INSERT INTO con.database.happy_hours SET ?',
+      `INSERT INTO ${process.env.DB_NAME}.happy_hours SET ?`,
       data,
       function(error, results) {
         if (error) return reject(error);
@@ -112,5 +112,17 @@ HappyHours.insert = function (data) {
     )
   });
 }
-// con.query('select 1 + 1', (err, rows) => { /* */ });
+
+HappyHours.getData = function () {
+  return new Promise(function(resolve, reject) {
+    con.query(
+      `SELECT * FROM ${process.env.DB_NAME}.happy_hours`,
+      function(error, results) {
+        if (error) return reject(error);
+        return resolve(results);
+      }
+    )
+  });
+}
+
 module.exports = HappyHours;
