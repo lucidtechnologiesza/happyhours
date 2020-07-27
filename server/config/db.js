@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 require('dotenv/config');
 
-var db_config =  {
+var db_config = {
     connectionLimit: 1000,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -9,30 +9,31 @@ var db_config =  {
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
     reconnect: true,
-  }
-  
-  var con = null;
-  function dbConnect() {
+}
+
+var con = null;
+
+function dbConnect() {
     con = mysql.createConnection(db_config); // Recreate the connection, since
-                                                    // the old one cannot be reused.
-    con.connect(function(err) {              // The server is either down
-      if(err) {                                     // or restarting (takes a while sometimes).
-        console.log('error when connecting to db:', err);
-        setTimeout(dbConnect, 2000); // We introduce a delay before attempting to reconnect,
-      }                                     // to avoid a hot loop, and to allow our node script to
-    });                                     // process asynchronous requests in the meantime.
-                                            // If you're also serving http, display a 503 error.
+    // the old one cannot be reused.
+    con.connect(function(err) { // The server is either down
+        if (err) { // or restarting (takes a while sometimes).
+            console.log('error when connecting to db:', err);
+            setTimeout(dbConnect, 2000); // We introduce a delay before attempting to reconnect,
+        } // to avoid a hot loop, and to allow our node script to
+    }); // process asynchronous requests in the meantime.
+    // If you're also serving http, display a 503 error.
     con.on('error', function(err) {
-      //console.log('db error', "reconnecting");
-      if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-        dbConnect();                         // lost due to either server restart, or a
-      } else {                                      // connnection idle timeout (the wait_timeout
-        throw err;                                  // server variable configures this)
-      }
+        //console.log('db error', "reconnecting");
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+            dbConnect(); // lost due to either server restart, or a
+        } else { // connnection idle timeout (the wait_timeout
+            throw err; // server variable configures this)
+        }
     });
-  }
-  dbConnect();
-  
+}
+dbConnect();
+
 /*                                        Queries                                                 */
 const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
   user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
@@ -88,41 +89,41 @@ const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
 //     throw connectErr;
 //   }
 //   console.log("CONNECTED TO DATABASE " + con["database"])
-  
-  con.query(
+
+con.query(
     `${Sql};`,
     (UsersErr) => {
-      if (UsersErr) throw UsersErr;
-      console.info('Tables created');
+        if (UsersErr) throw UsersErr;
+        console.info('Tables created');
     }
-  );
+);
 
 
 var HappyHours = {};
 
-HappyHours.insert = function (data) {
-  return new Promise(function(resolve, reject) {
-    con.query(
-      `INSERT INTO ${process.env.DB_NAME}.happy_hours SET ?`,
-      data,
-      function(error, results) {
-        if (error) return reject(error);
-        return resolve(results[0]);
-      }
-    )
-  });
+HappyHours.insert = function(data) {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `INSERT INTO ${process.env.DB_NAME}.happy_hours SET ?`,
+            data,
+            function(error, results) {
+                if (error) return reject(error);
+                return resolve(results[0]);
+            }
+        )
+    });
 }
 
-HappyHours.getData = function () {
-  return new Promise(function(resolve, reject) {
-    con.query(
-      `SELECT * FROM ${process.env.DB_NAME}.happy_hours`,
-      function(error, results) {
-        if (error) return reject(error);
-        return resolve(results);
-      }
-    )
-  });
+HappyHours.getData = function() {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `SELECT * FROM ${process.env.DB_NAME}.happy_hours`,
+            function(error, results) {
+                if (error) return reject(error);
+                return resolve(results);
+            }
+        )
+    });
 }
 
 module.exports = HappyHours;
