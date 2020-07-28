@@ -75,7 +75,6 @@ app.get('/admin', async(req, res) => {
     let info = {};
     var data = await db.getData();
     info.users = data;
-    console.log(info, "hey ");
     res.render('admin', info);
 });
 
