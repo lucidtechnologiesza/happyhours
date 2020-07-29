@@ -7,7 +7,10 @@
                     h6 {
                         font-family: "Lato", sans-serif
                     }
-                    body{min-width:100px;}
+                    
+                    body {
+                        min-width: 100px;
+                    }
                     
                     .w3-bar,
                     h1,
@@ -45,6 +48,11 @@
                         /* line-height: 2.8em; */
                     }
                     /* body */
+                    
+                    body {
+                        background-color: whitesmoke;
+                        background-image: url("../images/18.jpeg") no-repeat center center;
+                    }
                     
                     hr {
                         border-color: #ffc266;
