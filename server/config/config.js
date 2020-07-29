@@ -1,7 +1,6 @@
 require('dotenv/config');
-
 var config = {
-  port: process.env.PORT
+    port: process.env.PORT
 };
 
 module.exports = config;

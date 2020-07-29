@@ -1,41 +1,43 @@
 var mysql = require('mysql');
 require('dotenv/config');
 
-var db_config =  {
+var db_config = {
     connectionLimit: 1000,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
+    multipleStatements: true,
     reconnect: true,
-  }
-  
-  var con = null;
-  function dbConnect() {
+}
+
+var con = null;
+
+function dbConnect() {
     con = mysql.createConnection(db_config); // Recreate the connection, since
-                                                    // the old one cannot be reused.
-    con.connect(function(err) {              // The server is either down
-      if(err) {                                     // or restarting (takes a while sometimes).
-        console.log('error when connecting to db:', err);
-        setTimeout(dbConnect, 2000); // We introduce a delay before attempting to reconnect,
-      }                                     // to avoid a hot loop, and to allow our node script to
-    });                                     // process asynchronous requests in the meantime.
-                                            // If you're also serving http, display a 503 error.
+    // the old one cannot be reused.
+    con.connect(function(err) { // The server is either down
+        if (err) { // or restarting (takes a while sometimes).
+            console.log('error when connecting to db:', err);
+            setTimeout(dbConnect, 2000); // We introduce a delay before attempting to reconnect,
+        } // to avoid a hot loop, and to allow our node script to
+    }); // process asynchronous requests in the meantime.
+    // If you're also serving http, display a 503 error.
     con.on('error', function(err) {
-      //console.log('db error', "reconnecting");
-      if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
-        dbConnect();                         // lost due to either server restart, or a
-      } else {                                      // connnection idle timeout (the wait_timeout
-        throw err;                                  // server variable configures this)
-      }
+        //console.log('db error', "reconnecting");
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+            dbConnect(); // lost due to either server restart, or a
+        } else { // connnection idle timeout (the wait_timeout
+            throw err; // server variable configures this)
+        }
     });
-  }
-  dbConnect();
-  
+}
+dbConnect();
+
 /*                                        Queries                                                 */
-const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
-  user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
+const Sql = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
+  applicant_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
   childName varchar(50),
@@ -78,39 +80,106 @@ const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
   emergencyContact_1 varchar(20),
   emergencyContactName_2 varchar(50),
   emergencyContact_2 varchar(20),
+  Categories varchar(20),
+  babiesCategories varchar(20),
+  afterschlcare varchar(20),
+  casualday_holidaycare varchar(20),
+  Pottytraining varchar(20),
   agree varchar(10)
-)`;
-/*                                        End of Queries                                          */
+);`;
 
-// con.connect((connectErr) => {
-//   if (connectErr) {
-//     console.log(`${connectErr} `)
-//     throw connectErr;
-//   }
-//   console.log("CONNECTED TO DATABASE " + con["database"])
-  
-  con.query(
-    `${Sql};`,
-    (UsersErr) => {
-      if (UsersErr) throw UsersErr;
-      console.info('Tables created');
-    }
-  );
 
+const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
+                    DROP TABLE IF EXISTS ${db_config.database}.documents;
+                    DROP TABLE IF EXISTS ${db_config.database}.happy_hours;
+`;
+
+const admin = `CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
+    user_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
+    username varchar(10),
+    password varchar(1000)
+);`
+
+const documents = `CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
+    document_id int NOT NULL AUTO_INCREMENT,
+    applicant_id int,
+    document_name varchar(255),
+    document_type varchar(100),
+    document_path varchar(255),
+    PRIMARY KEY (document_id),
+    FOREIGN KEY (applicant_id) REFERENCES happy_hours(applicant_id)
+);`;
+
+runScript = function(sql) {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            sql,
+            function(error, results) {
+                if (error) return reject(error);    
+                console.info('SETUP SRCIPT RAN SUCCESFULLY');
+                return resolve(results[0]);
+            }
+        )
+    });
+}
 
 var HappyHours = {};
 
-HappyHours.insert = function (data) {
-  return new Promise(function(resolve, reject) {
-    con.query(
-      'INSERT INTO con.database.happy_hours SET ?',
-      data,
-      function(error, results) {
-        if (error) return reject(error);
-        return resolve(results[0]);
-      }
-    )
-  });
+HappyHours.insert = function(data) {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `INSERT INTO ${process.env.DB_NAME}.happy_hours SET ?`,
+            data,
+            function(error, results) {
+                if (error) return reject(error);
+                console.log("APPLICANT RECORD INSERTED SUCCESSFULLY: ", results);
+                return resolve(results.insertId);
+            }
+        )
+    });
 }
-// con.query('select 1 + 1', (err, rows) => { /* */ });
+
+HappyHours.documents = function(id, doc_name, doc_type, doc_path) {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `INSERT INTO ${process.env.DB_NAME}.documents(applicant_id, document_name, document_type, document_path)
+                VALUES (?,?,?,?)`,
+            [id, doc_name, doc_type, doc_path],
+            function(error, results) {
+                if (error) return reject(error);
+                console.log("DOCUMETS INSERTED SUCCESSFULLY: ", results);
+                return resolve(results[0]);
+            }
+        )
+    });
+}
+
+HappyHours.getData = function() {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `SELECT * FROM ${process.env.DB_NAME}.happy_hours`,
+            function(error, results) {
+                if (error) return reject(error);
+                console.info("DATA FROM DATABASE : ", results);
+                return resolve(results);
+            }
+        )
+    });
+}
+
+const setupAPP = async () => {
+    try {
+        await runScript(dropTbls) // remove script for prod...
+        await runScript(Sql) // apllication schema
+        await runScript(admin) // admin user too login
+        await runScript(documents) // document names and location
+
+        console.info("SETUP COMPLETE : VISIT HOME PAGE...")
+    } catch (error) {
+        console.error('COULD NOT CREATE TABLES', error);
+    }
+  }
+  
+  setupAPP()
+
 module.exports = HappyHours;
