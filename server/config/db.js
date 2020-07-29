@@ -8,6 +8,7 @@ var db_config = {
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
+    multipleStatements: true,
     reconnect: true,
 }
 
@@ -87,7 +88,11 @@ const Sql = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
   agree varchar(10)
 );`;
 
-const dropTbl = `DROP TABLE IF EXIST ${db_config.database}.happy_hours, ${db_config.database}.admin, ${db_config.database}.documents`;
+
+const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
+                    DROP TABLE IF EXISTS ${db_config.database}.documents;
+                    DROP TABLE IF EXISTS ${db_config.database}.happy_hours;
+`;
 
 const admin = `CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
     user_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
@@ -105,13 +110,13 @@ const documents = `CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
     FOREIGN KEY (applicant_id) REFERENCES happy_hours(applicant_id)
 );`;
 
-createTable = function(sql) {
+runScript = function(sql) {
     return new Promise(function(resolve, reject) {
         con.query(
             sql,
             function(error, results) {
                 if (error) return reject(error);    
-                console.info('Table created');
+                console.info('SETUP SRCIPT RAN SUCCESFULLY');
                 return resolve(results[0]);
             }
         )
@@ -127,6 +132,7 @@ HappyHours.insert = function(data) {
             data,
             function(error, results) {
                 if (error) return reject(error);
+                console.log("APPLICANT RECORD INSERTED SUCCESSFULLY: ", results);
                 return resolve(results.insertId);
             }
         )
@@ -141,7 +147,7 @@ HappyHours.documents = function(id, doc_name, doc_type, doc_path) {
             [id, doc_name, doc_type, doc_path],
             function(error, results) {
                 if (error) return reject(error);
-                console.log(results);
+                console.log("DOCUMETS INSERTED SUCCESSFULLY: ", results);
                 return resolve(results[0]);
             }
         )
@@ -154,6 +160,7 @@ HappyHours.getData = function() {
             `SELECT * FROM ${process.env.DB_NAME}.happy_hours`,
             function(error, results) {
                 if (error) return reject(error);
+                console.info("DATA FROM DATABASE : ", results);
                 return resolve(results);
             }
         )
@@ -162,9 +169,12 @@ HappyHours.getData = function() {
 
 const setupAPP = async () => {
     try {
-      await createTable(Sql) // apllication schema
-      await createTable(admin) // admin user too login
-      await createTable(documents) // document names and location
+        await runScript(dropTbls) // remove script for prod...
+        await runScript(Sql) // apllication schema
+        await runScript(admin) // admin user too login
+        await runScript(documents) // document names and location
+
+        console.info("SETUP COMPLETE : VISIT HOME PAGE...")
     } catch (error) {
         console.error('COULD NOT CREATE TABLES', error);
     }

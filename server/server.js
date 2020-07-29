@@ -67,7 +67,7 @@ function checkFileType(file, cb) {
 
 app.post('/login', (req, res) => {
     console.log(req.body);
-    res.render('home');
+    res.render('admin');
 });
 
 
@@ -199,6 +199,7 @@ app.post('/register', async(req, res) => {
                       'Happy Hours Registration',
                       `Thank you for registering with us`);    
                 }
+
                 if (req.body.fatherOrGuardianEmail) {
                     await mail(req.body.fatherOrGuardianEmail,
                       'Happy Hours Registration',
