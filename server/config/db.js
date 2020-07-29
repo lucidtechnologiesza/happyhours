@@ -79,25 +79,32 @@ const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
   emergencyContact_1 varchar(20),
   emergencyContactName_2 varchar(50),
   emergencyContact_2 varchar(20),
+  Categories varchar(20),
+  babiesCategories varchar(20),
+  afterschlcare varchar(20),
+  casualday_holidaycare varchar(20),
+  Pottytraining varchar(20),
   agree varchar(10)
-)`;
-/*                                        End of Queries                                          */
+);`;
 
-// con.connect((connectErr) => {
-//   if (connectErr) {
-//     console.log(`${connectErr} `)
-//     throw connectErr;
-//   }
-//   console.log("CONNECTED TO DATABASE " + con["database"])
+const admin = `CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
+    user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
+    username varchar(10),
+    password varchar(2000)
+);`
 
-con.query(
-    `${Sql};`,
-    (UsersErr) => {
-        if (UsersErr) throw UsersErr;
-        console.info('Tables created');
-    }
-);
-
+createTable = function(sql) {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            sql,
+            function(error, results) {
+                if (error) return reject(error);    
+                console.info('Table created');
+                return resolve(results[0]);
+            }
+        )
+    });
+}
 
 var HappyHours = {};
 
@@ -125,5 +132,16 @@ HappyHours.getData = function() {
         )
     });
 }
+
+const setupAPP = async () => {
+    try {
+      await createTable(Sql)
+      await createTable(admin)
+    } catch (error) {
+        console.error('COULD NOT CREATE TABLES', error);
+    }
+  }
+  
+  setupAPP()
 
 module.exports = HappyHours;
