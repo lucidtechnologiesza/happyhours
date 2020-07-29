@@ -36,7 +36,7 @@ dbConnect();
 
 /*                                        Queries                                                 */
 const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
-  user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
+  applicant_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
   childName varchar(50),
@@ -88,10 +88,20 @@ const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
 );`;
 
 const admin = `CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
-    user_id int(11) NOT NULL AUTO_INCREMENT  PRIMARY KEY,
+    user_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
     username varchar(10),
-    password varchar(2000)
+    password varchar(1000)
 );`
+
+const documents = `CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
+    document_id int NOT NULL AUTO_INCREMENT,
+    applicant_id int,
+    document_name varchar(255),
+    document_type varchar(100),
+    document_path varchar(255),
+    PRIMARY KEY (document_id),
+    FOREIGN KEY (applicant_id) REFERENCES happy_hours(applicant_id)
+);`;
 
 createTable = function(sql) {
     return new Promise(function(resolve, reject) {
@@ -115,6 +125,21 @@ HappyHours.insert = function(data) {
             data,
             function(error, results) {
                 if (error) return reject(error);
+                return resolve(results.insertId);
+            }
+        )
+    });
+}
+
+HappyHours.documents = function(id, doc_name, doc_type, doc_path) {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `INSERT INTO ${process.env.DB_NAME}.documents(applicant_id, document_name, document_type, document_path)
+                VALUES (?,?,?,?)`,
+            [id, doc_name, doc_type, doc_path],
+            function(error, results) {
+                if (error) return reject(error);
+                console.log(results);
                 return resolve(results[0]);
             }
         )
@@ -135,8 +160,9 @@ HappyHours.getData = function() {
 
 const setupAPP = async () => {
     try {
-      await createTable(Sql)
-      await createTable(admin)
+      await createTable(Sql) // apllication schema
+      await createTable(admin) // admin user too login
+      await createTable(documents) // document names and location
     } catch (error) {
         console.error('COULD NOT CREATE TABLES', error);
     }

@@ -87,7 +87,6 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async(req, res) => {
-    console.log(req.body);
     let progress = {
         status: false,
         type: '',
@@ -95,94 +94,94 @@ app.post('/register', async(req, res) => {
     };
     res.status(500).render('register', progress)
 
-    // upload(req, res, async(err) => {
-    //     if (err instanceof multer.MulterError) {
-    //         if (err.code === 'LIMIT_UNEXPECTED_FILE') {
-    //             progress.status = true;
-    //             progress.type = 'danger'
-    //             progress.message = 'Form not subimitted, Please do not provide not more than 2 copy of passport or ID'
-    //             console.log('multer: ', err);
-    //             res.status(400).render('register', progress)
-    //         }
-    //     } else if (err) {
-    //         progress.status = true;
-    //         progress.type = 'danger'
-    //         progress.message = 'Form not subimitted, Please provide valid documents...'
-    //         console.log('error: ', err);
-    //         res.status(500).render('resigster', progress)
-    //     } else {
-    //         try {
-    //             await db.insert({
-    //                 childSurname: req.body.childSurname,
-    //                 childName: req.body.childName,
-    //                 childGender: req.body.childGender,
-    //                 childDateOfBirth: req.body.childDateOfBirth,
-    //                 childKnownAs: req.body.childKnownAs,
-    //                 childRace: req.body.childRace,
-    //                 childEnrolmentDate: req.body.childEnrolmentDate,
-    //                 childReligion: req.body.childReligion,
-    //                 childHomeLanguage: req.body.childHomeLanguage,
-    //                 childAllergies: req.body.childAllergies,
-    //                 previousPreSchool: req.body.previousPreSchool,
-    //                 childDurationDate: req.body.childDurationDate,
-    //                 importantInformation: req.body.importantInformation,
-    //                 //mother details
-    //                 motherOrGuardianTitle: req.body.motherOrGuardianTitle,
-    //                 motherOrGuardianSurname: req.body.motherOrGuardianSurname,
-    //                 motherOrGuardianName: req.body.motherOrGuardianName,
-    //                 motherOrGuardianIdNumber: req.body.motherOrGuardianIdNumber,
-    //                 motherOrGuardianRelationship: req.body.motherOrGuardianRelationship,
-    //                 motherOrGuardianHomeTel: req.body.motherOrGuardianHomeTel,
-    //                 motherOrGuardianWorkTel: req.body.motherOrGuardianWorkTel,
-    //                 motherOrGuardianCell: req.body.motherOrGuardianCell,
-    //                 motherOrGuardianResidential: req.body.motherOrGuardianResidential,
-    //                 motherOrGuardianPostal: req.body.motherOrGuardianPostal,
-    //                 motherOrGuardianEmail: req.body.motherOrGuardianEmail,
-    //                 motherOrGuardianOccupation: req.body.motherOrGuardianOccupation,
-    //                 //father's details
-    //                 fatherOrGuardianTitle: req.body.fatherOrGuardianTitle,
-    //                 fatherOrGuardianSurname: req.body.fatherOrGuardianSurname,
-    //                 fatherOrGuardianName: req.body.fatherOrGuardianName,
-    //                 fatherOrGuardianIdNumber: req.body.fatherOrGuardianIdNumber,
-    //                 fatherOrGuardianRelationship: req.body.fatherOrGuardianRelationship,
-    //                 fatherOrGuardianHomeTel: req.body.fatherOrGuardianHomeTel,
-    //                 fatherOrGuardianWorkTel: req.body.fatherOrGuardianWorkTel,
-    //                 fatherOrGuardianCell: req.body.fatherOrGuardianCell,
-    //                 fatherOrGuardianResidential: req.body.fatherOrGuardianResidential,
-    //                 fatherOrGuardianPostal: req.body.fatherOrGuardianPostal,
-    //                 fatherOrGuardianEmail: req.body.fatherOrGuardianEmail,
-    //                 fatherOrGuardianOccupation: req.body.fatherOrGuardianOccupation,
-    //                 //emergency contact
-    //                 emergencyContactName_1: req.body.emergencyContactName_1,
-    //                 emergencyContact_1: req.body.emergencyContact_1,
-    //                 emergencyContactName_2: req.body.emergencyContactName_2,
-    //                 emergencyContact_2: req.body.emergencyContact_2,
-    //                 // agreement
-    //                 agree: req.body.agree
-    //             });
+    upload(req, res, async(err) => {
+        if (err instanceof multer.MulterError) {
+            if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+                progress.status = true;
+                progress.type = 'danger'
+                progress.message = 'Form not subimitted, Please do not provide not more than 2 copy of passport or ID'
+                console.log('multer: ', err);
+                res.status(400).render('register', progress)
+            }
+        } else if (err) {
+            progress.status = true;
+            progress.type = 'danger'
+            progress.message = 'Form not subimitted, Please provide valid documents...'
+            console.log('error: ', err);
+            res.status(500).render('resigster', progress)
+        } else {
+            try {
+                const applicat_id = await db.insert({
+                    childSurname: req.body.childSurname,
+                    childName: req.body.childName,
+                    childGender: req.body.childGender,
+                    childDateOfBirth: req.body.childDateOfBirth,
+                    childKnownAs: req.body.childKnownAs,
+                    childRace: req.body.childRace,
+                    childEnrolmentDate: req.body.childEnrolmentDate,
+                    childReligion: req.body.childReligion,
+                    childHomeLanguage: req.body.childHomeLanguage,
+                    childAllergies: req.body.childAllergies,
+                    previousPreSchool: req.body.previousPreSchool,
+                    childDurationDate: req.body.childDurationDate,
+                    importantInformation: req.body.importantInformation,
+                    //mother details
+                    motherOrGuardianTitle: req.body.motherOrGuardianTitle,
+                    motherOrGuardianSurname: req.body.motherOrGuardianSurname,
+                    motherOrGuardianName: req.body.motherOrGuardianName,
+                    motherOrGuardianIdNumber: req.body.motherOrGuardianIdNumber,
+                    motherOrGuardianRelationship: req.body.motherOrGuardianRelationship,
+                    motherOrGuardianHomeTel: req.body.motherOrGuardianHomeTel,
+                    motherOrGuardianWorkTel: req.body.motherOrGuardianWorkTel,
+                    motherOrGuardianCell: req.body.motherOrGuardianCell,
+                    motherOrGuardianResidential: req.body.motherOrGuardianResidential,
+                    motherOrGuardianPostal: req.body.motherOrGuardianPostal,
+                    motherOrGuardianEmail: req.body.motherOrGuardianEmail,
+                    motherOrGuardianOccupation: req.body.motherOrGuardianOccupation,
+                    //father's details
+                    fatherOrGuardianTitle: req.body.fatherOrGuardianTitle,
+                    fatherOrGuardianSurname: req.body.fatherOrGuardianSurname,
+                    fatherOrGuardianName: req.body.fatherOrGuardianName,
+                    fatherOrGuardianIdNumber: req.body.fatherOrGuardianIdNumber,
+                    fatherOrGuardianRelationship: req.body.fatherOrGuardianRelationship,
+                    fatherOrGuardianHomeTel: req.body.fatherOrGuardianHomeTel,
+                    fatherOrGuardianWorkTel: req.body.fatherOrGuardianWorkTel,
+                    fatherOrGuardianCell: req.body.fatherOrGuardianCell,
+                    fatherOrGuardianResidential: req.body.fatherOrGuardianResidential,
+                    fatherOrGuardianPostal: req.body.fatherOrGuardianPostal,
+                    fatherOrGuardianEmail: req.body.fatherOrGuardianEmail,
+                    fatherOrGuardianOccupation: req.body.fatherOrGuardianOccupation,
+                    //emergency contact
+                    emergencyContactName_1: req.body.emergencyContactName_1,
+                    emergencyContact_1: req.body.emergencyContact_1,
+                    emergencyContactName_2: req.body.emergencyContactName_2,
+                    emergencyContact_2: req.body.emergencyContact_2,
+                    // agreement
+                    agree: req.body.agree
+                });
 
-    //             // console.log(req.body.motherOrGuardianEmail);
-    //             // console.log(req.body.fatherOrGuardianEmail);
+                // console.log(req.body.motherOrGuardianEmail);
+                // console.log(req.body.fatherOrGuardianEmail);
 
-    //             // await mail(req.body.motherOrGuardianEmail,
-    //             //   'Happy Hours Registration',
-    //             //   `Thank you for registering with us`);
+                // await mail(req.body.motherOrGuardianEmail,
+                //   'Happy Hours Registration',
+                //   `Thank you for registering with us`);
 
-    //             // await mail(req.body.fatherOrGuardianEmail,
-    //             //   'Happy Hours Registration',
-    //             //   `Thank you for registering with us`);
+                // await mail(req.body.fatherOrGuardianEmail,
+                //   'Happy Hours Registration',
+                //   `Thank you for registering with us`);
 
 
 
-    //             console.log(req.files); // use this to store the file names in the database.
-    //             res.status(200).render('register', progress)
+                console.log(req.files); // use this to store the file names in the database.
+                res.status(200).render('register', progress)
 
-    //         } catch (error) {
-    //             console.log(error.message);
-    //             console.log("Error processing user information");
-    //         }
-    //     }
-    // })
+            } catch (error) {
+                console.log(error.message);
+                console.log("Error processing user information");
+            }
+        }
+    })
 })
 
 app.all('*', (req, res) => {

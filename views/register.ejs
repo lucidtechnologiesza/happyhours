@@ -90,7 +90,7 @@
     <div class="container-fluid">
         <h3 class="w3-center w3-border-bottom w3-border-light-grey">Regstration process</h3>
         <br />
-        <form class="w3-container" method="POST" action="register" id="msform" >
+        <form class="w3-container" method="POST" action="register" id="msform" enctype="multipart/form-data">
             <!-- progressbar -->
             <ul id="progressbar">
                 <li class="active">Child Details</li>
@@ -478,27 +478,27 @@
                     <div>
                         <div class="file-chooser w3-half">
                           <label for="pop">Proof of payment</label>
-                         <input id="proof_of_pay" class="file-chooser__input" type="file" name="proof_of_pay" >
+                         <input id="proof_of_pay" class="file-chooser__input" type="file" name="proof_of_pay" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
                           <label for="id_passport" name="id_passport">Copy of Parent's ID or Passport</label>
-                          <input id="id_passport" name="id_passport" class="file-chooser__input" type="file">
+                          <input id="id_passport" name="id_passport" class="file-chooser__input" type="file" multiple accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
                           <label for="prove_of_residence">Proof of residence</label>
-                          <input id="prove_of_residence" name="prove_of_residence" class="file-chooser__input" type="file">
+                          <input id="prove_of_residence" name="prove_of_residence" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
                           <label for="cliic_card">Clinc card</label>
-                         <input id="cliic_card" name="cliic_card" class="file-chooser__input" type="file" >
+                         <input id="cliic_card" name="cliic_card" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
                           <label for="certificate">Birth Certificate</label>
-                          <input id="certificate" name="certificate" class="file-chooser__input" type="file">
+                          <input id="certificate" name="certificate" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
                           <label for="medical">Copy of Medical Aid if available</label>
-                          <input id="medical" name="medical" class="file-chooser__input" type="file">
+                          <input id="medical" name="medical" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                       </div>
                 </div>
