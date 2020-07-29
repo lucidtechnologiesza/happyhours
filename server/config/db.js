@@ -35,7 +35,7 @@ function dbConnect() {
 dbConnect();
 
 /*                                        Queries                                                 */
-const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
+const Sql = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
   applicant_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
@@ -86,6 +86,8 @@ const Sql = `CREATE TABLE IF NOT EXISTS ` + db_config.database + `.happy_hours(
   Pottytraining varchar(20),
   agree varchar(10)
 );`;
+
+const dropTbl = `DROP TABLE IF EXIST ${db_config.database}.happy_hours, ${db_config.database}.admin, ${db_config.database}.documents`;
 
 const admin = `CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
     user_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,

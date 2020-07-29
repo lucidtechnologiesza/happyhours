@@ -33,8 +33,8 @@ var storage = multer.diskStorage({
         if (file.fieldname == 'medical') cb(null, './public/uploads/medical')
     },
     filename: function(req, file, cb) {
-        console.log(file);
-        cb(null, `Document` + '-' + Date.now() + '.pdf')
+        console.log();
+        cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
 
@@ -78,6 +78,10 @@ app.get('/admin', async(req, res) => {
     res.render('admin', info);
 });
 
+app.get('/home', (req, res) => {
+    res.render('home');
+})
+
 app.get('/register', (req, res) => {
     res.render('register', {
         status: false,
@@ -92,7 +96,6 @@ app.post('/register', async(req, res) => {
         type: '',
         message: ''
     };
-    res.status(500).render('register', progress)
 
     upload(req, res, async(err) => {
         if (err instanceof multer.MulterError) {
@@ -160,21 +163,50 @@ app.post('/register', async(req, res) => {
                     agree: req.body.agree
                 });
 
-                // console.log(req.body.motherOrGuardianEmail);
-                // console.log(req.body.fatherOrGuardianEmail);
+                if (req.files.id_passport) {
+                    req.files.id_passport.forEach(async docs => {
+                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                    });
+                }
 
-                // await mail(req.body.motherOrGuardianEmail,
-                //   'Happy Hours Registration',
-                //   `Thank you for registering with us`);
+                if (req.files.proof_of_pay) {
+                    req.files.proof_of_pay.forEach(async docs => {
+                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                    });
+                }
 
-                // await mail(req.body.fatherOrGuardianEmail,
-                //   'Happy Hours Registration',
-                //   `Thank you for registering with us`);
+                if (req.files.cliic_card) {
+                    req.files.prove_of_residence.forEach(async docs => {
+                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                    });
+                }
 
+                if (req.files.certificate) {
+                    req.files.certificate.forEach(async docs => {
+                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                    });
+                }
 
+                if (req.files.medical) {
+                    req.files.medical.forEach(async docs => {
+                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                    });
+                }
+                
+
+                if (req.body.motherOrGuardianEmail) {
+                    await mail(req.body.motherOrGuardianEmail,
+                      'Happy Hours Registration',
+                      `Thank you for registering with us`);    
+                }
+                if (req.body.fatherOrGuardianEmail) {
+                    await mail(req.body.fatherOrGuardianEmail,
+                      'Happy Hours Registration',
+                      `Thank you for registering with us`);
+                }
 
                 console.log(req.files); // use this to store the file names in the database.
-                res.status(200).render('register', progress)
+                res.status(200).render('home', progress)
 
             } catch (error) {
                 console.log(error.message);
