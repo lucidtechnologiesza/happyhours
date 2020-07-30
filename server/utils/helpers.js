@@ -9,4 +9,16 @@ const getApplicants = async () => {
 	return info;
 }
 
-module.exports = { getApplicants }
+const storeDocDetails = async (docs) => {
+	try {
+		await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+	} catch (error) {
+		console.error("ERROR STORING DOCS : ", error);
+		throw new Error(error);
+	}
+}
+
+module.exports = {
+	getApplicants,
+	storeDocDetails
+}
