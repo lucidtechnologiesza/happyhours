@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-const getApplicants = () => {
+const getApplicants = async () => {
 	
 	let info = {};
 	var data = await db.getData();

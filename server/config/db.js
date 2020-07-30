@@ -143,7 +143,7 @@ HappyHours.documents = function(id, doc_name, doc_type, doc_path) {
             [id, doc_name, doc_type, doc_path],
             function(error, results) {
                 if (error) return reject(error);
-                console.log("DOCUMETS INSERTED SUCCESSFULLY: ", results);
+                console.log("APPLICANT DOCUMENTS STORED SUCCESSFULLY : ", results);
                 return resolve(results[0]);
             }
         )
@@ -165,7 +165,7 @@ HappyHours.getData = function() {
 
 HappyHours.findAdminByUsername = (username) => {
 	return new Promise((resolve, reject) => {
-		dbc.query(`SELECT * ${process.env.DB_NAME}.admin WHERE username=?`,
+		con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE username=?`,
 			[username],
 			(error, result) => {
 				if (error) {

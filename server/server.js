@@ -1,17 +1,18 @@
-var path = require('path');
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var multer = require('multer');
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const mkdirp = require('mkdirp')
 const passEncrypt = require('bcryptjs');
 
-var db = require('./config/db');
-var mail = require('./config/mail');
+const db = require('./config/db');
+const mail = require('./config/mail');
 const helper = require('./utils/helpers')
 
 const app = express();
 
-/** --- middleware ---- */
+/** --- MIDDLEWARE ---- */
 app.use(session({
     secret: 'secret',
     resave: false,
@@ -22,9 +23,7 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-/** --- middleware ---- */
-
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: function(req, file, cb) {
 
         if (file.fieldname == 'proof_of_pay') cb(null, './public/uploads/pop')
@@ -45,7 +44,7 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({
+const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 10 },
     fileFilter: function(req, file, cb) {
@@ -72,6 +71,16 @@ function checkFileType(file, cb) {
     }
 }
 
+// CREATE DIRECTORIES ON SERVER
+mkdirp.sync('./public/uploads/pop');
+mkdirp.sync( './public/uploads/id_passport')
+mkdirp.sync( './public/uploads/por')
+mkdirp.sync( './public/uploads/cliic_card')
+mkdirp.sync( './public/uploads/certificate')
+mkdirp.sync('./public/uploads/medical')
+
+/** --- MIDDLEWARE ---- */
+
 app.post('/login', async (req, res) => {
     try {
         console.log(req.body);
@@ -80,7 +89,7 @@ app.post('/login', async (req, res) => {
         if (!match) {
             throw new Error("Incorrect username or password");
         }
-        res.status(200).render('admin', helper.getApplicants);
+        res.status(200).render('admin', helper.getApplicants());
     } catch (error) {
         console.error("FORBIDEN : ", error.message);
         res.status(401).render('home');
@@ -90,7 +99,9 @@ app.post('/login', async (req, res) => {
 
 app.get('/admin', async(req, res) => {
     try {
-        res.render('admin', helper.getApplicants);
+        const data = await helper.getApplicants();
+        console.log("DATA", data);
+        res.status(200).render('admin', data);
     } catch (error) {
         console.error("AN ERROR HAS OCCURED. ", error.message);
         res.status(500).render('home');
