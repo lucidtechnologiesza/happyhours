@@ -1,23 +1,29 @@
-var path = require('path');
-var express = require('express');
-var bodyParser = require('body-parser');
-var multer = require('multer');
-var db = require('./config/db');
-var mail = require('./config/mail');
-var path = require('path')
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const mkdirp = require('mkdirp')
+const passEncrypt = require('bcryptjs');
+
+const db = require('./config/db');
+const mail = require('./config/mail');
+const helper = require('./utils/helpers')
 
 const app = express();
 
-/** --- middleware ---- */
-
+/** --- MIDDLEWARE ---- */
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+  }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
-/** --- middleware ---- */
-
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: function(req, file, cb) {
 
         if (file.fieldname == 'proof_of_pay') cb(null, './public/uploads/pop')
@@ -38,7 +44,7 @@ var storage = multer.diskStorage({
     }
 });
 
-var upload = multer({
+const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 10 },
     fileFilter: function(req, file, cb) {
@@ -65,17 +71,41 @@ function checkFileType(file, cb) {
     }
 }
 
-app.post('/login', (req, res) => {
-    console.log(req.body);
-    res.render('admin');
+// CREATE DIRECTORIES ON SERVER
+mkdirp.sync('./public/uploads/pop');
+mkdirp.sync( './public/uploads/id_passport')
+mkdirp.sync( './public/uploads/por')
+mkdirp.sync( './public/uploads/cliic_card')
+mkdirp.sync( './public/uploads/certificate')
+mkdirp.sync('./public/uploads/medical')
+
+/** --- MIDDLEWARE ---- */
+
+app.post('/login', async (req, res) => {
+    try {
+        console.log(req.body);
+        let details = await db.findAdminByUsername(req.body.username)
+        let match = await passEncrypt.compare(details.password, req.body.password);
+        if (!match) {
+            throw new Error("Incorrect username or password");
+        }
+        res.status(200).render('admin', helper.getApplicants());
+    } catch (error) {
+        console.error("FORBIDEN : ", error.message);
+        res.status(401).render('home');
+    }
 });
 
 
 app.get('/admin', async(req, res) => {
-    let info = {};
-    var data = await db.getData();
-    info.users = data;
-    res.render('admin', info);
+    try {
+        const data = await helper.getApplicants();
+        console.log("DATA", data);
+        res.status(200).render('admin', data);
+    } catch (error) {
+        console.error("AN ERROR HAS OCCURED. ", error.message);
+        res.status(500).render('home');
+    }
 });
 
 app.get('/home', (req, res) => {
@@ -193,7 +223,6 @@ app.post('/register', async(req, res) => {
                     });
                 }
                 
-
                 if (req.body.motherOrGuardianEmail) {
                     await mail(req.body.motherOrGuardianEmail,
                       'Happy Hours Registration',
@@ -206,12 +235,11 @@ app.post('/register', async(req, res) => {
                       `Thank you for registering with us`);
                 }
 
-                console.log(req.files); // use this to store the file names in the database.
-                res.status(200).render('home', progress)
-
+                res.status(200).render('home')
             } catch (error) {
                 console.log(error.message);
                 console.log("Error processing user information");
+                res.status(500).render('home')
             }
         }
     })

@@ -1,74 +1,271 @@
- /* login */
- /*Trigger Button*/
- body{min-width:100px;}
- .login-trigger {
-     font-weight: bold;
-     color: #fff;
-     /* background: linear-gradient(to bottom right, #B05574, #F87E7B); */
-     padding: 15px 30px;
-     border-radius: 30px;
-     position: relative;
-     top: 50%;
- }
- /*Modal*/
- 
- h4 {
-     font-weight: bold;
-     color: #fff;
- }
- 
- .close {
-     color: #fff;
-     transform: scale(1.2)
- }
- 
- .modal-content {
-     font-weight: bold;
-     background: linear-gradient(to bottom right, #F87E7B, #B05574);
- }
- 
- .form-control {
-     margin: 1em 0;
- }
- 
- .form-control:hover,
- .form-control:focus {
-     box-shadow: none;
-     border-color: #fff;
- }
- 
- .username,
- .password {
-     border: none;
-     border-radius: 0;
-     box-shadow: none;
-     border-bottom: 2px solid #eee;
-     padding-left: 0;
-     font-weight: normal;
-     background: transparent;
- }
- 
- .form-control::-webkit-input-placeholder {
-     color: #eee;
- }
- 
- .form-control:focus::-webkit-input-placeholder {
-     font-weight: bold;
-     color: #fff;
- }
- 
- .login {
-     padding: 6px 20px;
-     border-radius: 20px;
-     background: none;
-     border: 2px solid #FAB87F;
-     color: #FAB87F;
-     font-weight: bold;
-     transition: all .5s;
-     margin-top: 1em;
- }
- 
- .login:hover {
-     background: #FAB87F;
-     color: #fff;
- }
+/* login */
+
+
+/*Trigger Button*/
+
+body {
+    min-width: 100px;
+}
+
+.login-trigger {
+    font-weight: bold;
+    color: #fff;
+    /* background: linear-gradient(to bottom right, #B05574, #F87E7B); */
+    padding: 15px 30px;
+    border-radius: 30px;
+    position: relative;
+    top: 50%;
+}
+
+
+/*Modal*/
+
+
+/* .modal {
+    background-color: blue;
+}
+
+.modal-dialog {
+    background-color: red;
+} */
+
+.modal-content {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.modal-body {
+    margin: 0;
+    padding: 0;
+    /* background-color: green; */
+}
+
+.login-form-title {
+    background-image: url('../images/2.jpg');
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 70px 15px 74px 15px;
+}
+
+.login-form-title-1 {
+    font-family: Poppins-Bold;
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.close {
+    position: relative;
+    top: -65px;
+    left: 225px;
+    transform: scale(1.2)
+}
+
+.close:hover {
+    color: rgb(220, 20, 60);
+}
+
+.login-form-title::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(54, 84, 99, 0.6);
+}
+
+.login-form {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 89px 40px 110px;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:focus:-moz-placeholder {
+    color: transparent;
+}
+
+input:focus::-moz-placeholder {
+    color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+input::-webkit-input-placeholder {
+    color: #999999;
+}
+
+input:-moz-placeholder {
+    color: #999999;
+}
+
+input::-moz-placeholder {
+    color: #999999;
+}
+
+input:-ms-input-placeholder {
+    color: #999999;
+}
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #b2b2b2;
+}
+
+.label-input {
+    font-family: Poppins-Regular;
+    font-size: 15px;
+    color: #808080;
+    line-height: 1.2;
+    text-align: right;
+    position: absolute;
+    top: 14px;
+    left: -105px;
+    width: 80px;
+}
+
+.input {
+    font-family: Poppins-Regular;
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    background: transparent;
+    padding: 0 5px;
+}
+
+.focus-input {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.focus-input::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    -webkit-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    transition: all 0.6s;
+    background: rgb(220, 20, 60);
+}
+
+input.input {
+    height: 45px;
+}
+
+.input:focus+.focus-input::before {
+    width: 100%;
+}
+
+.has-val.input+.focus-input::before {
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin: 0;
+}
+
+.txt1 {
+    font-family: Poppins-Regular;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999999;
+}
+
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+iframe {
+    border: none !important;
+}
+
+.container-login-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.login-form-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 16px;
+    height: 40px;
+    background-color: #333333;
+    border-radius: 25px;
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.login-form-btn:hover {
+    background-color: rgb(220, 20, 60);
+}

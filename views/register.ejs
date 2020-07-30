@@ -33,6 +33,7 @@
 
     <!--User defined css-->
     <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/register.css">
 
 </head>
@@ -43,7 +44,7 @@
     <div class="w3-top" id="home">
         <div class="w3-bar w3-red w3-card w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-white w3-hover-red">Home</a>
+            <a href="/home" class="w3-bar-item w3-button w3-padding-large  w3-hover-red">Home</a>
             <a href="/home #gallery" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
             <a href="/home #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger" data-target="#login" data-toggle="modal">Login</a>
@@ -53,7 +54,7 @@
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
             <a href="/home #gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Gallery</a>
             <a href="/home #service" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Service</a>
-            <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Register</a>
+            <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-white w3-hover-red">Register</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger" data-target="#login" data-toggle="modal">Login</a>
         </div>
     </div>
@@ -74,12 +75,30 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <button data-dismiss="modal" class="close">&times;</button>
-                    <h4>Login</h4>
-                    <form action="login" method="POST">
-                        <input type="text" name="username" class="username form-control" placeholder="Username" />
-                        <input type="password" name="password" class="password form-control" placeholder="password" />
-                        <input class="w3-button login" type="submit" value="Login" />
+                    <div class="login-form-title">
+                        <button data-dismiss="modal" class="close">&times;</button>
+                        <span class="login-form-title-1">
+                            Login 
+                        </span>
+                    </div>
+                    <form class="login-form" action="login" method="POST">
+                        <div class="wrap-input validate-input m-b-26" data-validate="Username is required">
+                            <span class="label-input">Username</span>
+                            <input class="input" type="text" name="username" placeholder="Enter username">
+                            <span class="focus-input"></span>
+                        </div>
+
+                        <div class="wrap-input validate-input m-b-18" data-validate="Password is required">
+                            <span class="label-input">Password</span>
+                            <input class="input" type="password" name="pass" placeholder="Enter password">
+                            <span class="focus-input"></span>
+                        </div>
+
+                        <div class="container-login-form-btn">
+                            <button class="login-form-btn">
+                                    Login
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -110,12 +129,12 @@
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                     <div class="w3-half">
                         <label for="childSurname"> Surname</label>
-                        <input class="w3-input " type="text" id="childSurname" name="childSurname" placeholder="Surname" >
+                        <input class="w3-input " type="text" id="childSurname" name="childSurname" placeholder="Surname">
                     </div>
 
                     <div class="w3-half">
                         <label> Name</label>
-                        <input class="w3-input" type="text" id="childName" name="childName" placeholder="Name" >
+                        <input class="w3-input" type="text" id="childName" name="childName" placeholder="Name">
                     </div>
 
                     <div class="w3-half">
@@ -125,12 +144,12 @@
 
                     <div class="w3-half">
                         <label>Date of birth</label>
-                        <input class="w3-input" type="date" name="childDateOfBirth" id="childDateOfBirth" placeholder="Date of birth" >
+                        <input class="w3-input" type="date" name="childDateOfBirth" id="childDateOfBirth" placeholder="Date of birth">
                     </div>
 
                     <div class="w3-half">
                         <label for="childGender">Gender</label>
-                        <select class="w3-select w3-border" name="childGender" id="childGender" >
+                        <select class="w3-select w3-border" name="childGender" id="childGender">
                             <option value="">Choose yours</option>
                             <option value="female">Female</option>
                             <option value="male">Male</option>
@@ -139,7 +158,7 @@
 
                     <div class="w3-half">
                         <label for="childRace">Race</label>
-                        <select class="w3-select w3-border" name="childRace" id="childRace" >
+                        <select class="w3-select w3-border" name="childRace" id="childRace">
                             <option value="">Choose yours</option>
                             <option value="black">Black</option>
                             <option value="indian">Indian</option>
@@ -154,7 +173,7 @@
 
                     <div class="w3-half">
                         <label>Enrollment Date</label>
-                        <input type="date" id="childEnrolmentDate" name="childEnrolmentDate" placeholder="Enrollment Date" >
+                        <input type="date" id="childEnrolmentDate" name="childEnrolmentDate" placeholder="Enrollment Date">
                     </div>
 
 
@@ -199,7 +218,7 @@
 
                         <div class="w3-half">
                             <label for="title">Title</label>
-                            <select name="motherOrGuardianTitle" id="motherOrGuardianTitle" >
+                            <select name="motherOrGuardianTitle" id="motherOrGuardianTitle">
                             <option value="">Choose yours</option>
                             <option value="dr">Dr.</option>
                             <option value="mrs">Mrs.</option>
@@ -214,7 +233,7 @@
 
                         <div class="w3-half">
                             <label for="motherOrGuardianRelationship">Relationship to child</label>
-                            <select name="motherOrGuardianRelationship" id="motherOrGuardianRelationship" >
+                            <select name="motherOrGuardianRelationship" id="motherOrGuardianRelationship">
                                     <option value="mother">Mother</option>
                                     <option value="guardian">Guardian</option>
                                 </select>
@@ -222,17 +241,17 @@
 
                         <div class="w3-half">
                             <label for="motherOrGuardianSurname"> Surname</label>
-                            <input type="text" id="motherOrGuardianSurname" name="motherOrGuardianSurname" placeholder="Surname " >
+                            <input type="text" id="motherOrGuardianSurname" name="motherOrGuardianSurname" placeholder="Surname ">
                         </div>
 
                         <div class="w3-half">
                             <label for="motherOrGuardianName"> Name</label>
-                            <input type="text" id="motherOrGuardianName" name="motherOrGuardianName" placeholder="Name " >
+                            <input type="text" id="motherOrGuardianName" name="motherOrGuardianName" placeholder="Name ">
                         </div>
 
                         <div class="w3-half">
                             <label for="motherOrGuardianIdNumber"> ID Number</label>
-                            <input type="text" id="motherOrGuardianIdNumber" name="motherOrGuardianIdNumber" placeholder="ID number " >
+                            <input type="text" id="motherOrGuardianIdNumber" name="motherOrGuardianIdNumber" placeholder="ID number ">
                         </div>
 
                         <div class="w3-half">
@@ -262,7 +281,7 @@
 
                         <div class="w3-half">
                             <label for="motherOrGuardianResidential">Residential Address </label>
-                            <textarea id="motherOrGuardianResidential" name="motherOrGuardianResidential" placeholder="Residential address " ></textarea>
+                            <textarea id="motherOrGuardianResidential" name="motherOrGuardianResidential" placeholder="Residential address "></textarea>
                         </div>
                         <div class="w3-half">
                             <label for="motherOrGuardianPostal">Postal Address </label>
@@ -283,7 +302,7 @@
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianTitle">Title</label>
-                        <select name="fatherOrGuardianTitle" id="fatherOrGuardianTitle" >
+                        <select name="fatherOrGuardianTitle" id="fatherOrGuardianTitle">
                             <option value="">Choose yours</option>
                             <option value="dr">Dr.</option>
                             <option value="mr">Mr.</option>
@@ -304,17 +323,17 @@
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianName"> Name</label>
-                        <input type="text" id="fatherOrGuardianName" name="fatherOrGuardianName" placeholder="Name" >
+                        <input type="text" id="fatherOrGuardianName" name="fatherOrGuardianName" placeholder="Name">
                     </div>
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianSurname">Surname</label>
-                        <input type="text" id="fatherOrGuardianSurname" name="fatherOrGuardianSurname" placeholder="Surname" >
+                        <input type="text" id="fatherOrGuardianSurname" name="fatherOrGuardianSurname" placeholder="Surname">
                     </div>
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianIdNumber"> ID number</label>
-                        <input type="text" id="fatherOrGuardianIdNumber" name="fatherOrGuardianIdNumber" placeholder="ID number" >
+                        <input type="text" id="fatherOrGuardianIdNumber" name="fatherOrGuardianIdNumber" placeholder="ID number">
                     </div>
 
                     <div class="w3-half">
@@ -334,17 +353,17 @@
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianCell">Cellphone number</label>
-                        <input type="text" id="fatherOrGuardianCell" name="fatherOrGuardianCell" placeholder="Cellphone number " >
+                        <input type="text" id="fatherOrGuardianCell" name="fatherOrGuardianCell" placeholder="Cellphone number ">
                     </div>
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianOccupation">Dad’s occupation (Compulsory) </label>
-                        <input type="text" id="fatherOrGuardianOccupation" name="fatherOrGuardianOccupation" placeholder="Dad’s occupation and place of work " >
+                        <input type="text" id="fatherOrGuardianOccupation" name="fatherOrGuardianOccupation" placeholder="Dad’s occupation and place of work ">
                     </div>
 
                     <div class="w3-half">
                         <label for="fatherOrGuardianResidential">Residential address </label>
-                        <textarea id="fatherOrGuardianResidential" name="fatherOrGuardianResidential" placeholder="Residential address " ></textarea>
+                        <textarea id="fatherOrGuardianResidential" name="fatherOrGuardianResidential" placeholder="Residential address "></textarea>
                     </div>
 
                     <div class="w3-half">
@@ -356,12 +375,12 @@
                     <label>Someone who can be contacted in an emergency (other than parents) Compulsory </label>
                     <div class="w3-half">
                         <label for="emergencyContactName_1"> 1) Full Name </label>
-                        <input type="text" id="emergencyContactName_1" name="emergencyContactName_1" placeholder="Full Name " >
+                        <input type="text" id="emergencyContactName_1" name="emergencyContactName_1" placeholder="Full Name ">
                     </div>
 
                     <div class="w3-half">
                         <label for=" emergencyContact_1">Contact Number </label>
-                        <input type="text" id="emergencyContact_1" name="emergencyContact_1" placeholder="Contact number " >
+                        <input type="text" id="emergencyContact_1" name="emergencyContact_1" placeholder="Contact number ">
                     </div>
 
                     <label>Second Someone who can be contacted in an emergency (other than parents) if applicable</label>
@@ -477,30 +496,30 @@
                     </div>
                     <div>
                         <div class="file-chooser w3-half">
-                          <label for="pop">Proof of payment</label>
-                         <input id="proof_of_pay" class="file-chooser__input" type="file" name="proof_of_pay" accept="application/pdf">
+                            <label for="pop">Proof of payment</label>
+                            <input id="proof_of_pay" class="file-chooser__input" type="file" name="proof_of_pay" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
-                          <label for="id_passport" name="id_passport">Copy of Parent's ID or Passport</label>
-                          <input id="id_passport" name="id_passport" class="file-chooser__input" type="file" multiple accept="application/pdf">
+                            <label for="id_passport" name="id_passport">Copy of Parent's ID or Passport</label>
+                            <input id="id_passport" name="id_passport" class="file-chooser__input" type="file" multiple accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
-                          <label for="prove_of_residence">Proof of residence</label>
-                          <input id="prove_of_residence" name="prove_of_residence" class="file-chooser__input" type="file" accept="application/pdf">
+                            <label for="prove_of_residence">Proof of residence</label>
+                            <input id="prove_of_residence" name="prove_of_residence" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
-                          <label for="cliic_card">Clinc card</label>
-                         <input id="cliic_card" name="cliic_card" class="file-chooser__input" type="file" accept="application/pdf">
+                            <label for="cliic_card">Clinc card</label>
+                            <input id="cliic_card" name="cliic_card" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
-                          <label for="certificate">Birth Certificate</label>
-                          <input id="certificate" name="certificate" class="file-chooser__input" type="file" accept="application/pdf">
+                            <label for="certificate">Birth Certificate</label>
+                            <input id="certificate" name="certificate" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
                         <div class="file-chooser w3-half">
-                          <label for="medical">Copy of Medical Aid if available</label>
-                          <input id="medical" name="medical" class="file-chooser__input" type="file" accept="application/pdf">
+                            <label for="medical">Copy of Medical Aid if available</label>
+                            <input id="medical" name="medical" class="file-chooser__input" type="file" accept="application/pdf">
                         </div>
-                      </div>
+                    </div>
                 </div>
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
                 <input type="button" name="next" class="next action-button" value="Next" />
@@ -593,7 +612,7 @@
                 <!-- <button type="submit" name="submit" class="submit action-button">Submit</button> -->
                 <input type="submit" name="submit" class="submit action-button" value="Submit" />
             </fieldset>
-        </form>
+            </form>
     </div>
     <script src="js/register.js "></script>
 
