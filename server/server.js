@@ -1,15 +1,22 @@
 var path = require('path');
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var multer = require('multer');
+const passEncrypt = require('bcryptjs');
+
 var db = require('./config/db');
 var mail = require('./config/mail');
-var path = require('path')
+const helper = require('./utils/helpers')
 
 const app = express();
 
 /** --- middleware ---- */
-
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true
+  }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
@@ -65,17 +72,29 @@ function checkFileType(file, cb) {
     }
 }
 
-app.post('/login', (req, res) => {
-    console.log(req.body);
-    res.render('admin');
+app.post('/login', async (req, res) => {
+    try {
+        console.log(req.body);
+        let details = await db.findAdminByUsername(req.body.username)
+        let match = await passEncrypt.compare(details.password, req.body.password);
+        if (!match) {
+            throw new Error("Incorrect username or password");
+        }
+        res.status(200).render('admin', helper.getApplicants);
+    } catch (error) {
+        console.error("FORBIDEN : ", error.message);
+        res.status(401).render('home');
+    }
 });
 
 
 app.get('/admin', async(req, res) => {
-    let info = {};
-    var data = await db.getData();
-    info.users = data;
-    res.render('admin', info);
+    try {
+        res.render('admin', helper.getApplicants);
+    } catch (error) {
+        console.error("AN ERROR HAS OCCURED. ", error.message);
+        res.status(500).render('home');
+    }
 });
 
 app.get('/home', (req, res) => {
@@ -193,7 +212,6 @@ app.post('/register', async(req, res) => {
                     });
                 }
                 
-
                 if (req.body.motherOrGuardianEmail) {
                     await mail(req.body.motherOrGuardianEmail,
                       'Happy Hours Registration',
@@ -206,12 +224,11 @@ app.post('/register', async(req, res) => {
                       `Thank you for registering with us`);
                 }
 
-                console.log(req.files); // use this to store the file names in the database.
-                res.status(200).render('home', progress)
-
+                res.status(200).render('home')
             } catch (error) {
                 console.log(error.message);
                 console.log("Error processing user information");
+                res.status(500).render('home')
             }
         }
     })

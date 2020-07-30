@@ -36,7 +36,7 @@ function dbConnect() {
 dbConnect();
 
 /*                                        Queries                                                 */
-const Sql = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
+const Schemas = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
   applicant_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
   aboutUs varchar(50),
   childSurname varchar(50),
@@ -86,21 +86,11 @@ const Sql = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
   casualday_holidaycare varchar(20),
   Pottytraining varchar(20),
   agree varchar(10)
-);`;
-
-
-const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
-                    DROP TABLE IF EXISTS ${db_config.database}.documents;
-                    DROP TABLE IF EXISTS ${db_config.database}.happy_hours;
-`;
-
-const admin = `CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
+);CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
     user_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
     username varchar(10),
     password varchar(1000)
-);`
-
-const documents = `CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
+);CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
     document_id int NOT NULL AUTO_INCREMENT,
     applicant_id int,
     document_name varchar(255),
@@ -109,6 +99,12 @@ const documents = `CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
     PRIMARY KEY (document_id),
     FOREIGN KEY (applicant_id) REFERENCES happy_hours(applicant_id)
 );`;
+
+
+const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
+DROP TABLE IF EXISTS ${db_config.database}.documents;
+DROP TABLE IF EXISTS ${db_config.database}.happy_hours;
+`;
 
 runScript = function(sql) {
     return new Promise(function(resolve, reject) {
@@ -167,12 +163,24 @@ HappyHours.getData = function() {
     });
 }
 
+HappyHours.findAdminByUsername = (username) => {
+	return new Promise((resolve, reject) => {
+		dbc.query(`SELECT * ${process.env.DB_NAME}.admin WHERE username=?`,
+			[username],
+			(error, result) => {
+				if (error) {
+					return reject(error);
+                }
+                console.info(`${username} LOGGING IN AS ADMIN`)
+				return resolve(result[0]);
+			})
+	})
+}
+
 const setupAPP = async () => {
     try {
         await runScript(dropTbls) // remove script for prod...
-        await runScript(Sql) // apllication schema
-        await runScript(admin) // admin user too login
-        await runScript(documents) // document names and location
+        await runScript(Schemas) // apllication, admin and documents schema
 
         console.info("SETUP COMPLETE : VISIT HOME PAGE...")
     } catch (error) {
