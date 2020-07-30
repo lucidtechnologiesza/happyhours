@@ -38,6 +38,7 @@
 <script src="js/lightbox-plus-jquery.min.js"></script>
 <link rel="stylesheet" href="css/home.css">
 <link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/util.css">
 <link rel="stylesheet" href="css/gallery.css">
 <link rel="stylesheet" href="css/service.css">
 <script src="js/home.js"></script>
@@ -71,15 +72,32 @@
     <!--Login-->
     <div id="login" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
             <div class="modal-content">
                 <div class="modal-body">
-                    <button data-dismiss="modal" class="close">&times;</button>
-                    <h4>Login</h4>
-                    <form action="login" method="POST">
-                        <input type="text" name="username" class="username form-control" placeholder="Username" />
-                        <input type="password" name="password" class="password form-control" placeholder="password" />
-                        <input class="w3-button login" type="submit" value="Login" />
+                    <div class="login-form-title">
+                        <button data-dismiss="modal" class="close">&times;</button>
+                        <span class="login-form-title-1">
+                            Login
+                        </span>
+                    </div>
+                    <form class="login-form" action="login" method="POST">
+                        <div class="wrap-input  m-b-26" data-validate="Username is required">
+                            <span class="label-input">Username</span>
+                            <input class="input" type="text" name="username" placeholder="Enter username">
+                            <span class="focus-input"></span>
+                        </div>
+
+                        <div class="wrap-input  m-b-18" data-validate="Password is required">
+                            <span class="label-input">Password</span>
+                            <input class="input" type="password" name="pass" placeholder="Enter password">
+                            <span class="focus-input"></span>
+                        </div>
+
+                        <div class="container-login-form-btn">
+                            <button class="login-form-btn">
+                                Login
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
