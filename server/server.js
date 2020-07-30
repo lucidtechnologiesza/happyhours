@@ -39,7 +39,6 @@ const storage = multer.diskStorage({
         if (file.fieldname == 'medical') cb(null, './public/uploads/medical')
     },
     filename: function(req, file, cb) {
-        console.log();
         cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
@@ -83,21 +82,31 @@ mkdirp.sync('./public/uploads/medical')
 
 app.post('/login', async (req, res) => {
     try {
-        console.log(req.body);
         let details = await db.findAdminByUsername(req.body.username)
-        let match = await passEncrypt.compare(details.password, req.body.password);
+        let match = await passEncrypt.compare(req.body.pass, details.password);
         if (!match) {
             throw new Error("Incorrect username or password");
         }
-        res.status(200).render('admin', helper.getApplicants());
+        req.session.loggedin = true;
+        const data = await helper.getApplicants();
+        console.log("DATA", data);
+        res.status(200).render('admin', data);
     } catch (error) {
         console.error("FORBIDEN : ", error.message);
         res.status(401).render('home');
     }
 });
 
+auth = (req, res, next) => {
+    if (req.session.loggedin) {
+        next();
+    } else {
+        console.log("UNAUTHORIZED LOGIN : ", req.body);
+        res.status(400).render('home');
+    }
+}
 
-app.get('/admin', async(req, res) => {
+app.get('/admin', auth, async(req, res) => {
     try {
         const data = await helper.getApplicants();
         console.log("DATA", data);
@@ -195,31 +204,31 @@ app.post('/register', async(req, res) => {
 
                 if (req.files.id_passport) {
                     req.files.id_passport.forEach(async docs => {
-                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                        await helper.storeDocDetails(docs)
                     });
                 }
 
                 if (req.files.proof_of_pay) {
                     req.files.proof_of_pay.forEach(async docs => {
-                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                        await helper.storeDocDetails(docs)
                     });
                 }
 
                 if (req.files.cliic_card) {
                     req.files.prove_of_residence.forEach(async docs => {
-                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                        await helper.storeDocDetails(docs)
                     });
                 }
 
                 if (req.files.certificate) {
                     req.files.certificate.forEach(async docs => {
-                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                        await helper.storeDocDetails(docs)
                     });
                 }
 
                 if (req.files.medical) {
                     req.files.medical.forEach(async docs => {
-                        await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
+                        await helper.storeDocDetails(docs)
                     });
                 }
                 

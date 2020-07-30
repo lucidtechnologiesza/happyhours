@@ -88,7 +88,8 @@ const Schemas = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
   agree varchar(10)
 );CREATE TABLE IF NOT EXISTS ${db_config.database}.admin(
     user_id int NOT NULL AUTO_INCREMENT  PRIMARY KEY,
-    username varchar(10),
+    email varchar(100),
+    token varchar(255),
     password varchar(1000)
 );CREATE TABLE IF NOT EXISTS ${db_config.database}.documents(
     document_id int NOT NULL AUTO_INCREMENT,
@@ -98,7 +99,8 @@ const Schemas = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
     document_path varchar(255),
     PRIMARY KEY (document_id),
     FOREIGN KEY (applicant_id) REFERENCES happy_hours(applicant_id)
-);`;
+);
+INSERT INTO admin(email, password) VALUES ('mustafassebuliba@yahoo.com', '$2a$10$xUnmR9rgYbWNcdqnFk.Hr.jOLTi14cDkvgU.gyM4Ryr9.trh4Z9SG');`;
 
 
 const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
@@ -165,7 +167,7 @@ HappyHours.getData = function() {
 
 HappyHours.findAdminByUsername = (username) => {
 	return new Promise((resolve, reject) => {
-		con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE username=?`,
+		con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE email=?`,
 			[username],
 			(error, result) => {
 				if (error) {
