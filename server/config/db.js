@@ -103,17 +103,17 @@ const Schemas = `CREATE TABLE IF NOT EXISTS ${db_config.database}.happy_hours(
 INSERT INTO admin(email, password) VALUES ('mustafassebuliba@yahoo.com', '$2a$10$xUnmR9rgYbWNcdqnFk.Hr.jOLTi14cDkvgU.gyM4Ryr9.trh4Z9SG');`;
 
 
-const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
-DROP TABLE IF EXISTS ${db_config.database}.documents;
-DROP TABLE IF EXISTS ${db_config.database}.happy_hours;
-`;
+// const dropTbls = `DROP TABLE IF EXISTS ${db_config.database}.admin;
+// DROP TABLE IF EXISTS ${db_config.database}.documents;
+// DROP TABLE IF EXISTS ${db_config.database}.happy_hours;
+// `;
 
 runScript = function(sql) {
     return new Promise(function(resolve, reject) {
         con.query(
             sql,
             function(error, results) {
-                if (error) return reject(error);    
+                if (error) return reject(error);
                 console.info('SETUP SRCIPT RAN SUCCESFULLY');
                 return resolve(results[0]);
             }
@@ -141,8 +141,7 @@ HappyHours.documents = function(id, doc_name, doc_type, doc_path) {
     return new Promise(function(resolve, reject) {
         con.query(
             `INSERT INTO ${process.env.DB_NAME}.documents(applicant_id, document_name, document_type, document_path)
-                VALUES (?,?,?,?)`,
-            [id, doc_name, doc_type, doc_path],
+                VALUES (?,?,?,?)`, [id, doc_name, doc_type, doc_path],
             function(error, results) {
                 if (error) return reject(error);
                 console.log("APPLICANT DOCUMENTS STORED SUCCESSFULLY : ", results);
@@ -166,30 +165,29 @@ HappyHours.getData = function() {
 }
 
 HappyHours.findAdminByUsername = (username) => {
-	return new Promise((resolve, reject) => {
-		con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE email=?`,
-			[username],
-			(error, result) => {
-				if (error) {
-					return reject(error);
+    return new Promise((resolve, reject) => {
+        con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE email=?`, [username],
+            (error, result) => {
+                if (error) {
+                    return reject(error);
                 }
                 console.info(`${username} LOGGING IN AS ADMIN`)
-				return resolve(result[0]);
-			})
-	})
+                return resolve(result[0]);
+            })
+    })
 }
 
-const setupAPP = async () => {
+const setupAPP = async() => {
     try {
-        await runScript(dropTbls) // remove script for prod...
+        // await runScript(dropTbls) // remove script for prod...
         await runScript(Schemas) // apllication, admin and documents schema
 
         console.info("SETUP COMPLETE : VISIT HOME PAGE...")
     } catch (error) {
         console.error('COULD NOT CREATE TABLES', error);
     }
-  }
-  
-  setupAPP()
+}
+
+setupAPP()
 
 module.exports = HappyHours;
