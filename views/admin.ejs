@@ -34,10 +34,14 @@
     <!-- Navbar -->
     <div class="w3-top" id="home">
         <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red"
+                href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
             <a href="home.html" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Home</a>
-            <a href="home.html #gallery" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
-            <a href="home.html #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
+            <a href="home.html #gallery"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
+            <a href="home.html #service"
+                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-white login-trigger">Logout</a>
 
         </div>
@@ -71,30 +75,37 @@
                 </tr>
 
                 <!-- docs -->
-                <%users.forEach(function(element) {%>
-                    <tr>
-                        <td>
-                            <%=element.applicant_id%>
-                        </td>
-                        <td>
-                            <%=element.childName%>
-                        </td>
-                        <td>
-                            <%=element.childSurname%>
-                        </td>
-                        <td>
-                            <%=element.childGender%>
-                        </td>
-                        <td>
-                            <%=element.childDateOfBirth%>
-                        </td>
+                <%let i = 1%>
+                <%users.forEach(function(user) {%>
+                <tr>
+                    <td>
+                        <%=i++%>
+                        <%=user.applicant_id%>
+                    </td>
+                    <td>
+                        <%=user.childName%>
+                    </td>
+                    <td>
+                        <%=user.childSurname%>
+                    </td>
+                    <td>
+                        <%=user.childGender%>
+                    </td>
+                    <td>
+                        <%=user.childDateOfBirth%>
+                    </td>
 
-                        <td><span class="material-icons" data-toggle="tooltip" style="cursor: pointer;" title="update user details" onclick="document.getElementById('id01').style.display='block'">add_circle</span></td>
-                        <td><span class="material-icons" data-toggle="tooltip" style="cursor: pointer;" title="delete user details">delete</span></td>
-                        <td><span class="material-icons" data-toggle="tooltip" style="cursor: pointer;" title="view user details" onclick="document.getElementById('id02').style.display='block'">info</span></td>
+                    <td><span class="material-icons" data-toggle="tooltip" style="cursor: pointer;"
+                            title="update user details"
+                            onclick="document.getElementById('id01').style.display='block'">add_circle</span></td>
+                    <td><span class="material-icons" data-toggle="tooltip" style="cursor: pointer;"
+                            title="delete user details">delete</span></td>
+                    <td><span class="material-icons" data-toggle="tooltip" style="cursor: pointer;"
+                            title="view user details"
+                            onclick="document.getElementById('id02').style.display='block'">info</span></td>
 
-                    </tr>
-                    <% }); %>
+                </tr>
+                <% }); %>
             </table>
         </div>
         <!-- update forms -->
@@ -103,42 +114,49 @@
                 <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
 
                     <header class="w3-container w3-red">
-                        <%users.forEach(function(element) {%>
-                            <h2>
-                                <%=element.childName%>
-                                    <%=element.childSurname%>
-                            </h2>
+                        <%users.forEach(function(user) {%>
+                        <h2>
+                            <%=user.childName%>
+                            <%=user.childSurname%>
+                        </h2>
 
                     </header>
 
 
                     <div class="w3-bar w3-border-bottom">
-                        <button class="tablink w3-bar-item w3-button" onclick="openuserDetails(event, 'childDetails')">Child</button>
-                        <button class="tablink w3-bar-item w3-button" onclick="openuserDetails(event, 'motherDetails')">Mother</button>
-                        <button class="tablink w3-bar-item w3-button" onclick="openuserDetails(event, 'fatherDetails')">Father</button>
+                        <button class="tablink w3-bar-item w3-button"
+                            onclick="openuserDetails(event, 'childDetails')">Child</button>
+                        <button class="tablink w3-bar-item w3-button"
+                            onclick="openuserDetails(event, 'motherDetails')">Mother</button>
+                        <button class="tablink w3-bar-item w3-button"
+                            onclick="openuserDetails(event, 'fatherDetails')">Father</button>
                     </div>
                     <!-- child details -->
                     <div id="childDetails" class="w3-container userDetails">
                         <form class="w3-container" action="">
                             <div class="w3-section">
                                 <label for="childSurname"> Surname</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childSurname" name="childSurname" placeholder="Surname">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childSurname"
+                                    name="childSurname" placeholder="Surname">
 
                                 <label for="childName"> Name</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childName" name="childName" placeholder="Name">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childName"
+                                    name="childName" placeholder="Name">
 
                                 <label for="childKnownAs">Also Known as</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childKnownAs" name="childKnownAs" placeholder="Prefered Child Name">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childKnownAs"
+                                    name="childKnownAs" placeholder="Prefered Child Name">
 
                                 <label for="childDateOfBirth">Date of birth</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="date" name="childDateOfBirth" id="childDateOfBirth" placeholder="Date of birth">
+                                <input class="w3-input w3-border w3-margin-bottom" type="date" name="childDateOfBirth"
+                                    id="childDateOfBirth" placeholder="Date of birth">
 
                                 <label for="childGender"> Gender</label>
                                 <select class="w3-select w3-border" name="childGender" id="childGender">
-                                <option value="">Choose yours</option>
-                                <option value="female">Female</option>
-                                <option value="male">Male</option>
-                            </select>
+                                    <option value="">Choose yours</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
 
                                 <label for="childRace">Ethinic group</label>
                                 <select class="w3-select w3-border" name="childRace" id="childRace">
@@ -150,14 +168,18 @@
                                 </select>
 
                                 <label for="childReligion"> Religion</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childReligion" name="childReligion" placeholder="Religion">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childReligion"
+                                    name="childReligion" placeholder="Religion">
 
                                 <label>Enrollment Date</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="date" id="childEnrolmentDate" name="childEnrolmentDate" placeholder="Enrollment Date">
+                                <input class="w3-input w3-border w3-margin-bottom" type="date" id="childEnrolmentDate"
+                                    name="childEnrolmentDate" placeholder="Enrollment Date">
 
                                 <label for="childHomeLanguage">Home language</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childHomeLanguage" name="childHomeLanguage" placeholder="Home language">
-                                <button class="w3-button w3-block w3-red w3-section w3-padding" type="submit">update</button>
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="childHomeLanguage"
+                                    name="childHomeLanguage" placeholder="Home language">
+                                <button class="w3-button w3-block w3-red w3-section w3-padding"
+                                    type="submit">update</button>
                             </div>
                         </form>
                     </div>
@@ -166,7 +188,8 @@
                         <form class="w3-container" action="">
                             <div class="w3-section">
                                 <label for="title">Title</label>
-                                <select class="w3-input w3-border w3-margin-bottom" name="motherOrGuardianTitle" id="motherOrGuardianTitle">
+                                <select class="w3-input w3-border w3-margin-bottom" name="motherOrGuardianTitle"
+                                    id="motherOrGuardianTitle">
                                     <option value="">Choose yours</option>
                                     <option value="dr">Dr.</option>
                                     <option value="mrs">Mrs.</option>
@@ -178,42 +201,59 @@
                                     <option value="hon">Hon</option>
                                 </select>
                                 <label for="motherOrGuardianRelationship">Relationship to child</label>
-                                <select class="w3-input w3-border w3-margin-bottom" name="motherOrGuardianRelationship" id="motherOrGuardianRelationship">
+                                <select class="w3-input w3-border w3-margin-bottom" name="motherOrGuardianRelationship"
+                                    id="motherOrGuardianRelationship">
                                     <option value="mother">Mother</option>
                                     <option value="guardian">Guardian</option>
                                 </select>
 
                                 <label for="motherOrGuardianSurname"> Surname</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianSurname" name="motherOrGuardianSurname" placeholder="Surname ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="motherOrGuardianSurname" name="motherOrGuardianSurname" placeholder="Surname ">
 
                                 <label for="motherOrGuardianName"> Name</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianName" name="motherOrGuardianName" placeholder="Name ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianName"
+                                    name="motherOrGuardianName" placeholder="Name ">
 
                                 <label for="motherOrGuardianIdNumber"> ID Number</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianIdNumber" name="motherOrGuardianIdNumber" placeholder="ID number ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="motherOrGuardianIdNumber" name="motherOrGuardianIdNumber"
+                                    placeholder="ID number ">
 
                                 <label for="motherOrGuardianEmail"> E-mail address</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="email" id="motherOrGuardianEmail" name="motherOrGuardianEmail" placeholder="E-mail address ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="email"
+                                    id="motherOrGuardianEmail" name="motherOrGuardianEmail"
+                                    placeholder="E-mail address ">
 
                                 <label for="motherOrGuardianHomeTel"> Home telephone</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianHomeTel" name="motherOrGuardianHomeTel" placeholder="Home telephone">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="motherOrGuardianHomeTel" name="motherOrGuardianHomeTel"
+                                    placeholder="Home telephone">
 
                                 <label for="motherOrGuardianWorkTel">Work telephone</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianWorkTel" name="motherOrGuardianWorkTel" placeholder="Work telephone">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="motherOrGuardianWorkTel" name="motherOrGuardianWorkTel"
+                                    placeholder="Work telephone">
 
                                 <label for="motherOrGuardianWorkTel">Cellphone </label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianCell" name="motherOrGuardianCell" placeholder="Cellphone">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianCell"
+                                    name="motherOrGuardianCell" placeholder="Cellphone">
 
                                 <label for="motherOrGuardianOccupation"> Mom’s occupation </label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="motherOrGuardianOccupation" name="motherOrGuardianOccupation" placeholder="Mom’s occupation and place of work ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="motherOrGuardianOccupation" name="motherOrGuardianOccupation"
+                                    placeholder="Mom’s occupation and place of work ">
 
                                 <label for="motherOrGuardianResidential">Residential Address </label>
-                                <textarea class="w3-input w3-border w3-margin-bottom" id="motherOrGuardianResidential" name="motherOrGuardianResidential" placeholder="Residential address "></textarea>
+                                <textarea class="w3-input w3-border w3-margin-bottom" id="motherOrGuardianResidential"
+                                    name="motherOrGuardianResidential" placeholder="Residential address "></textarea>
 
                                 <label for="motherOrGuardianPostal">Postal Address </label>
-                                <textarea class="w3-input w3-border w3-margin-bottom" id="motherOrGuardianPostal" name="motherOrGuardianPostal" placeholder="Postal Address "></textarea>
+                                <textarea class="w3-input w3-border w3-margin-bottom" id="motherOrGuardianPostal"
+                                    name="motherOrGuardianPostal" placeholder="Postal Address "></textarea>
 
-                                <button class="w3-button w3-block w3-red w3-section w3-padding" type="submit">update</button>
+                                <button class="w3-button w3-block w3-red w3-section w3-padding"
+                                    type="submit">update</button>
                             </div>
                         </form>
                     </div>
@@ -222,58 +262,77 @@
                         <form class="w3-container" action="">
                             <div class="w3-section">
                                 <label for="fatherOrGuardianTitle">Title</label>
-                                <select class="w3-input w3-border w3-margin-bottom" name="fatherOrGuardianTitle" id="fatherOrGuardianTitle">
-                                <option value="">Choose yours</option>
-                                <option value="dr">Dr.</option>
-                                <option value="mr">Mr.</option>
-                                <option value="rev">Rev</option>
-                                <option value="prof">Prof</option>
-                                <option value="adv">Adv</option>
-                                <option value="hon">Hon</option>
-                            </select>
+                                <select class="w3-input w3-border w3-margin-bottom" name="fatherOrGuardianTitle"
+                                    id="fatherOrGuardianTitle">
+                                    <option value="">Choose yours</option>
+                                    <option value="dr">Dr.</option>
+                                    <option value="mr">Mr.</option>
+                                    <option value="rev">Rev</option>
+                                    <option value="prof">Prof</option>
+                                    <option value="adv">Adv</option>
+                                    <option value="hon">Hon</option>
+                                </select>
 
                                 <label for="fatherOrGuardianRelationship">Relationship to child</label>
-                                <select class="w3-input w3-border w3-margin-bottom" name="fatherOrGuardianRelationship" id="fatherOrGuardianRelationship">
-                                <option value="father">father</option>
-                                <option value="guardian">Guardian</option>
-                            </select>
+                                <select class="w3-input w3-border w3-margin-bottom" name="fatherOrGuardianRelationship"
+                                    id="fatherOrGuardianRelationship">
+                                    <option value="father">father</option>
+                                    <option value="guardian">Guardian</option>
+                                </select>
 
                                 <label for="fatherOrGuardianName"> Name</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianName" name="fatherOrGuardianName" placeholder="Name">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianName"
+                                    name="fatherOrGuardianName" placeholder="Name">
 
                                 <label for="fatherOrGuardianSurname">Surname</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianSurname" name="fatherOrGuardianSurname" placeholder="Surname">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="fatherOrGuardianSurname" name="fatherOrGuardianSurname" placeholder="Surname">
 
                                 <label for="fatherOrGuardianIdNumber"> ID number</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianIdNumber" name="fatherOrGuardianIdNumber" placeholder="ID number">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="fatherOrGuardianIdNumber" name="fatherOrGuardianIdNumber"
+                                    placeholder="ID number">
 
                                 <label for="fatherOrGuardianEmail"> E-mail address</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianEmail" name="fatherOrGuardianEmail" placeholder="E-mail address ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="fatherOrGuardianEmail" name="fatherOrGuardianEmail"
+                                    placeholder="E-mail address ">
 
                                 <label for="fatherOrGuardianWorkTel">Work telephone</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianWorkTel" name="fatherOrGuardianWorkTel" placeholder="Work telephone ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="fatherOrGuardianWorkTel" name="fatherOrGuardianWorkTel"
+                                    placeholder="Work telephone ">
 
                                 <label for="fatherOrGuardianHomeTel"> Home Telephone</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianHomeTel" name="fatherOrGuardianHomeTel" placeholder="Home telephone">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="fatherOrGuardianHomeTel" name="fatherOrGuardianHomeTel"
+                                    placeholder="Home telephone">
 
                                 <label for="fatherOrGuardianCell">Cellphone number</label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianCell" name="fatherOrGuardianCell" placeholder="Cellphone number ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianCell"
+                                    name="fatherOrGuardianCell" placeholder="Cellphone number ">
 
                                 <label for="fatherOrGuardianOccupation">Dad’s occupation (Compulsory) </label>
-                                <input class="w3-input w3-border w3-margin-bottom" type="text" id="fatherOrGuardianOccupation" name="fatherOrGuardianOccupation" placeholder="Dad’s occupation and place of work ">
+                                <input class="w3-input w3-border w3-margin-bottom" type="text"
+                                    id="fatherOrGuardianOccupation" name="fatherOrGuardianOccupation"
+                                    placeholder="Dad’s occupation and place of work ">
 
                                 <label for="fatherOrGuardianResidential">Residential address </label>
-                                <textarea class="w3-input w3-border w3-margin-bottom" id="fatherOrGuardianResidential" name="fatherOrGuardianResidential" placeholder="Residential address "></textarea>
+                                <textarea class="w3-input w3-border w3-margin-bottom" id="fatherOrGuardianResidential"
+                                    name="fatherOrGuardianResidential" placeholder="Residential address "></textarea>
 
                                 <label for="fatherOrGuardianPostal">Postal address </label>
-                                <textarea class="w3-input w3-border w3-margin-bottom" id="fatherOrGuardianPostal" name="fatherOrGuardianPostal" placeholder="Postal Address "></textarea>
-                                <button class="w3-button w3-block w3-red w3-section w3-padding" type="submit">update</button>
+                                <textarea class="w3-input w3-border w3-margin-bottom" id="fatherOrGuardianPostal"
+                                    name="fatherOrGuardianPostal" placeholder="Postal Address "></textarea>
+                                <button class="w3-button w3-block w3-red w3-section w3-padding"
+                                    type="submit">update</button>
                             </div>
                         </form>
                     </div>
 
                     <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                        <button onclick="document.getElementById('id01').style.display='none'" type="button"
+                            class="w3-button w3-red">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -283,14 +342,15 @@
             <div class="w3-modal-content w3-card-4" style="height: 600px;width: 1000px;;">
                 <header class="w3-container w3-red">
                     <!-- close -->
-                    <span onclick="document.getElementById('id02').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                    <span onclick="document.getElementById('id02').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
                     <!-- model title -->
                     <h2>Learner Details</h2>
                 </header>
                 <!-- user profile -->
                 <p style="display: inline-block;"><i class="material-icons">person</i> Learner Profile:
-                    <%=element.childName%>
-                        <%=element.childSurname%>
+                    <%=user.childName%>
+                    <%=user.childSurname%>
                 </p>
                 <!-- child and parent info -->
                 <div class="w3-row" style="height: auto; background-color: blue; padding: 15px 15px;">
@@ -305,7 +365,7 @@
                                 </div>
 
                                 <div class="w3-container  w3-cell">
-                                    <span><%=element.childKnownAs%></span>
+                                    <span><%=user.childKnownAs%></span>
                                 </div>
                             </li>
 
@@ -314,7 +374,7 @@
                                     <span>Date of Birth:</span> </div>
 
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childDateOfBirth%></span>
+                                    <span><%=user.childDateOfBirth%></span>
                                 </div>
                             </li>
 
@@ -323,7 +383,7 @@
                                     <span>Gender: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childGender%></span>
+                                    <span><%=user.childGender%></span>
                                 </div>
                             </li>
 
@@ -332,7 +392,7 @@
                                     <span>Race: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childRace%></span>
+                                    <span><%=user.childRace%></span>
                                 </div>
                             </li>
                             <li>
@@ -340,7 +400,7 @@
                                     <span>Religion: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childReligion%></span>
+                                    <span><%=user.childReligion%></span>
                                 </div>
                             </li>
 
@@ -349,7 +409,7 @@
                                     <span>Entrolment Date: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childEnrolmentDate%></span>
+                                    <span><%=user.childEnrolmentDate%></span>
                                 </div>
                             </li>
                             <li>
@@ -357,7 +417,7 @@
                                     <span>Allergies: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childAllergies%></span>
+                                    <span><%=user.childAllergies%></span>
                                 </div>
                             </li>
                             <li>
@@ -365,7 +425,7 @@
                                     <span>Previous Pre-School: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.previousPreSchool%></span>
+                                    <span><%=user.previousPreSchool%></span>
                                 </div>
                             </li>
                             <li>
@@ -373,13 +433,13 @@
                                     <span>Home Language: </span>
                                 </div>
                                 <div class="w3-container w3-cell">
-                                    <span><%=element.childHomeLanguage%></span>
+                                    <span><%=user.childHomeLanguage%></span>
                                 </div>
                             </li>
                             <li>
                                 <div class="w3-container w3-cell">
                                     <span>Important Information About the child: </span><br>
-                                    <span><%=element.importantInformation%></span>
+                                    <span><%=user.importantInformation%></span>
                                 </div>
                             </li>
                         </ul>
@@ -388,10 +448,14 @@
                     <!-- div 2 for parent info -->
                     <div class="w3-col w3-dark-grey w3-container" style=" margin: 0; padding: 0;width:65%">
                         <div class="w3-bar w3-black">
-                            <button class="w3-bar-item w3-button tablink-2 w3-red" onclick="openDetails(event,'mother')">Mother/Guardian</button>
-                            <button class="w3-bar-item w3-button tablink-2" onclick="openDetails(event,'father')">Father/Guardian</button>
-                            <button class="w3-bar-item w3-button tablink-2" onclick="openDetails(event,'emerContact')">Emergency Contact</button>
-                            <button class="w3-bar-item w3-button tablink-2" onclick="openDetails(event,'childDocuments')">Child Documents</button>
+                            <button class="w3-bar-item w3-button tablink-2 w3-red"
+                                onclick="openDetails(event,'mother')">Mother/Guardian</button>
+                            <button class="w3-bar-item w3-button tablink-2"
+                                onclick="openDetails(event,'father')">Father/Guardian</button>
+                            <button class="w3-bar-item w3-button tablink-2"
+                                onclick="openDetails(event,'emerContact')">Emergency Contact</button>
+                            <button class="w3-bar-item w3-button tablink-2"
+                                onclick="openDetails(event,'childDocuments')">Child Documents</button>
                         </div>
                         <!-- Mother details -->
                         <div id="mother" class="w3-container w3-border parentInfo" style="margin: 0px; padding: 0px;">
@@ -416,47 +480,48 @@
                                     </thead>
                                     <tr>
                                         <td>
-                                            <%=element.motherOrGuardianTitle%>
+                                            <%=user.motherOrGuardianTitle%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianName%>
+                                            <%=user.motherOrGuardianName%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianSurname%>
+                                            <%=user.motherOrGuardianSurname%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianIdNumber%>
+                                            <%=user.motherOrGuardianIdNumber%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianRelationship%>
+                                            <%=user.motherOrGuardianRelationship%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianResidential%>
+                                            <%=user.motherOrGuardianResidential%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianPostal%>
+                                            <%=user.motherOrGuardianPostal%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianHomeTel%>
+                                            <%=user.motherOrGuardianHomeTel%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianWorkTel%>
+                                            <%=user.motherOrGuardianWorkTel%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianCell%>
+                                            <%=user.motherOrGuardianCell%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianEmail%>
+                                            <%=user.motherOrGuardianEmail%>
                                         </td>
                                         <td>
-                                            <%=element.motherOrGuardianOccupation%>
+                                            <%=user.motherOrGuardianOccupation%>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
 
-                        <div id="father" class="w3-container w3-border parentInfo" style="display:none; margin: 0px; padding: 0px;">
+                        <div id="father" class="w3-container w3-border parentInfo"
+                            style="display:none; margin: 0px; padding: 0px;">
                             <div class="w3-responsive">
                                 <table class="w3-table-all" style="color: black">
                                     <thead>
@@ -477,40 +542,40 @@
                                     </thead>
                                     <tr>
                                         <td>
-                                            <%=element.fatherOrGuardianTitle%>
+                                            <%=user.fatherOrGuardianTitle%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianName%>
+                                            <%=user.fatherOrGuardianName%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianSurname%>
+                                            <%=user.fatherOrGuardianSurname%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianIdNumber%>
+                                            <%=user.fatherOrGuardianIdNumber%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianRelationship%>
+                                            <%=user.fatherOrGuardianRelationship%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianResidential%>
+                                            <%=user.fatherOrGuardianResidential%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianPostal%>
+                                            <%=user.fatherOrGuardianPostal%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianHomeTel%>
+                                            <%=user.fatherOrGuardianHomeTel%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianWorkTel%>
+                                            <%=user.fatherOrGuardianWorkTel%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianCell%>
+                                            <%=user.fatherOrGuardianCell%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianEmail%>
+                                            <%=user.fatherOrGuardianEmail%>
                                         </td>
                                         <td>
-                                            <%=element.fatherOrGuardianOccupation%>
+                                            <%=user.fatherOrGuardianOccupation%>
                                         </td>
                                     </tr>
                                 </table>
@@ -527,10 +592,10 @@
                                     </thead>
                                     <tr>
                                         <td>
-                                            <%=element.emergencyContactName_1%>
+                                            <%=user.emergencyContactName_1%>
                                         </td>
                                         <td>
-                                            <%=element.emergencyContact_1%>
+                                            <%=user.emergencyContact_1%>
                                         </td>
                                     </tr>
                                 </table>
@@ -542,10 +607,10 @@
                                     </thead>
                                     <tr>
                                         <td>
-                                            <%=element.emergencyContactName_2%>
+                                            <%=user.emergencyContactName_2%>
                                         </td>
                                         <td>
-                                            <%=element.emergencyContact_2%>
+                                            <%=user.emergencyContact_2%>
                                         </td>
                                     </tr>
                                 </table>
@@ -571,49 +636,49 @@
                 </div>
             </div>
             <% }); %>
-                <!-- Mpho please move these scripts to a JS folder-->
-                <script>
-                    $(document).ready(function() {
-                        $('[data-toggle="tooltip "]').tooltip();
-                    });
-                </script>
+            <!-- Mpho please move these scripts to a JS folder-->
+            <script>
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip "]').tooltip();
+                });
+            </script>
 
-                <script>
-                    function openDetails(evt, parent) {
-                        var i, x, tablinks;
-                        x = document.getElementsByClassName("parentInfo");
-                        for (i = 0; i < x.length; i++) {
-                            x[i].style.display = "none";
-                        }
-                        tablinks = document.getElementsByClassName("tablink-2");
-                        for (i = 0; i < x.length; i++) {
-                            tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-                        }
-                        document.getElementById(parent).style.display = "block";
-                        evt.currentTarget.className += " w3-red";
+            <script>
+                function openDetails(evt, parent) {
+                    var i, x, tablinks;
+                    x = document.getElementsByClassName("parentInfo");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
                     }
-                </script>
-
-                <script>
-                    document.getElementsByClassName("tablink")[0].click();
-
-                    function openuserDetails(evt, userDetailsName) {
-                        var i, x, tablinks;
-                        x = document.getElementsByClassName("userDetails");
-                        for (i = 0; i < x.length; i++) {
-                            x[i].style.display = "none";
-                        }
-                        tablinks = document.getElementsByClassName("tablink");
-                        for (i = 0; i < x.length; i++) {
-                            tablinks[i].classList.remove("w3-red");
-                        }
-                        document.getElementById(userDetailsName).style.display = "block";
-                        evt.currentTarget.classList.add("w3-red");
+                    tablinks = document.getElementsByClassName("tablink-2");
+                    for (i = 0; i < x.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
                     }
-                </script>
+                    document.getElementById(parent).style.display = "block";
+                    evt.currentTarget.className += " w3-red";
+                }
+            </script>
 
-                <script src="js/admin.js ">
-                </script>
+            <script>
+                document.getElementsByClassName("tablink")[0].click();
+
+                function openuserDetails(evt, userDetailsName) {
+                    var i, x, tablinks;
+                    x = document.getElementsByClassName("userDetails");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablink");
+                    for (i = 0; i < x.length; i++) {
+                        tablinks[i].classList.remove("w3-red");
+                    }
+                    document.getElementById(userDetailsName).style.display = "block";
+                    evt.currentTarget.classList.add("w3-red");
+                }
+            </script>
+
+            <script src="js/admin.js ">
+            </script>
 </body>
 
 </html>
