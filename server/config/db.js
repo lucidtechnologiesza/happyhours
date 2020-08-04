@@ -164,6 +164,19 @@ HappyHours.getData = function() {
     });
 }
 
+HappyHours.getDocs = function() {
+    return new Promise(function(resolve, reject) {
+        con.query(
+            `SELECT * FROM ${process.env.DB_NAME}.documents`,
+            function(error, results) {
+                if (error) return reject(error);
+                console.info("DOCUMMENTS FROM DATABASE : ", results);
+                return resolve(results);
+            }
+        )
+    });
+}
+
 HappyHours.findAdminByUsername = (username) => {
     return new Promise((resolve, reject) => {
         con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE email=?`, [username],

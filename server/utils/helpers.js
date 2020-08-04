@@ -3,8 +3,8 @@ const db = require('../config/db');
 const getApplicants = async () => {
 	
 	let info = {};
-	var data = await db.getData();
-	info.users = data;
+	info.users = await db.getData();
+	info.docs = await db.getDocs();
 
 	return info;
 }
