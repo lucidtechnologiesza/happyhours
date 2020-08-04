@@ -9,7 +9,7 @@ const getApplicants = async () => {
 	return info;
 }
 
-const storeDocDetails = async (docs) => {
+const storeDocDetails = async (applicat_id, docs) => {
 	try {
 		await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
 	} catch (error) {
