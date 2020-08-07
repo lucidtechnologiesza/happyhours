@@ -46,14 +46,14 @@
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="/home" class="w3-bar-item w3-button w3-padding-large  w3-hover-red">Home</a>
             <a href="/home #gallery" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Gallery</a>
-            <a href="/home #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Service</a>
+            <a href="/home #service" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Services</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger" data-target="#login" data-toggle="modal">Login</a>
         </div>
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
             <a href="/home #gallery" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Gallery</a>
-            <a href="/home #service" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Service</a>
+            <a href="/home #service" class="w3-bar-item w3-button w3-padding-large w3-hover-red">Services</a>
             <a href="/register" class="w3-bar-item w3-button w3-padding-large w3-white w3-hover-red">Register</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-red login-trigger" data-target="#login" data-toggle="modal">Login</a>
         </div>
@@ -121,7 +121,7 @@
             </ul>
             <!-- fieldsets -->
             <!-- form 1 -->
-            <fieldset>
+            <fieldset id="form1">
                 <!-- for debugging -->
                 <p id="error"></p>
                 <h2 class="fs-title">Child Details</h2>
@@ -199,14 +199,16 @@
                         <textarea id="importantInformation" name="importantInformation" placeholder="Any important information for Happy Hours to know"></textarea>
                     </div>
                 </div>
+                <p id="errorMsg"></p>
                 <!-- add disabled Attribute -->
                 <!-- <button id="btn1" name="btn_next" class="next action-button ">Next</button> -->
-                <input type="button" name="next" class=" next action-button " value="Next " />
+                <input id="1" type="button" name="next" class=" next action-button " value="Next " />
+                
             </fieldset>
 
             <!-- Form 2 -->
-            <fieldset>
-                <form method="POST" action="register" id="smsform">
+            <fieldset id="form2">
+                <!-- <form method="POST" action="register" id="smsform"> -->
                     <p id="error"></p>
                     <h2 class="fs-title ">Mother / Guardian’s Details</h2>
                     <h3 class="fs-subtitle ">step 2</h3>
@@ -219,16 +221,17 @@
                         <div class="w3-half">
                             <label for="title">Title</label>
                             <select name="motherOrGuardianTitle" id="motherOrGuardianTitle">
-                            <option value="">Choose yours</option>
-                            <option value="dr">Dr.</option>
-                            <option value="mrs">Mrs.</option>
-                            <option value="miss">Miss.</option>
-                            <option value="ms">Ms</option>
-                            <option value="rev">Rev</option>
-                            <option value="prof">Prof</option>
-                            <option value="adv">Adv</option>
-                            <option value="hon">Hon</option>
-                        </select>
+                                <option value="">Choose yours</option>
+                                <option value="mr">Mr.</option>
+                                <option value="dr">Dr.</option>
+                                <option value="mrs">Mrs.</option>
+                                <option value="miss">Miss.</option>
+                                <option value="ms">Ms</option>
+                                <option value="rev">Rev</option>
+                                <option value="prof">Prof</option>
+                                <option value="adv">Adv</option>
+                                <option value="hon">Hon</option>
+                            </select>
                         </div>
 
                         <div class="w3-half">
@@ -289,13 +292,14 @@
                         </div>
 
                     </div>
+                    <p id="errorMsg"></p>
                     <input type="button" name="previous" class="previous action-button " value="Previous " />
                     <!-- <button id="submit " name="submit" class="submit action-button ">Next</button> -->
-                    <input type="button" name="next" class="next action-button" value="Next " />
+                    <input id="2" type="button" name="next" class="next action-button" value="Next " />
             </fieldset>
 
             <!-- form 3 -->
-            <fieldset>
+            <fieldset id="form3">
                 <h2 class="fs-title">Father / Second Guardian’s Details</h2>
                 <h3 class="fs-subtitle">step 3</h3>
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px ">
@@ -395,10 +399,10 @@
                     </div>
                 </div>
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
-                <input type="button" name="next" class="next action-button" value="Next " />
+                <input id="3" type="button" name="next" class="next action-button" value="Next " />
             </fieldset>
             <!-- form 4 -->
-            <fieldset>
+            <fieldset id="form4">
                 <h2 class="fs-title">Please tick your choice</h2>
                 <h3 class="fs-subtitle">step 4</h3>
                 <div class="w3-row-padding" style="margin:0 -16px 8px -16px; overflow-x:auto;">
@@ -480,11 +484,11 @@
                 </div>
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
                 <!-- <button id="submit" name="submit" class="submit action-button">Next</button> -->
-                <input type="button" name="next" class="next action-button" value="Next" />
+                <input id="4" type="button" name="next" class="next action-button" value="Next" />
             </fieldset>
 
             <!--File upload-->
-            <fieldset>
+            <fieldset id="form5">
                 <h2 class="fs-title">Upload Documents</h2>
                 <h3 class="fs-subtitle">step 5</h3>
 
@@ -522,10 +526,10 @@
                     </div>
                 </div>
                 <input type="button" name="previous" class="previous action-button" value="Previous" />
-                <input type="button" name="next" class="next action-button" value="Next" />
+                <input id="5" type="button" name="next" class="next action-button" value="Next" />
             </fieldset>
             <!--Teams and Conditions-->
-            <fieldset>
+            <fieldset id="form6">
                 <h2 class="fs-title">Terms and Conditions</h2>
                 <h3 class="fs-subtitle">step 6</h3>
 

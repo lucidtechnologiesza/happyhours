@@ -204,31 +204,31 @@ app.post('/register', async(req, res) => {
 
                 if (req.files.id_passport) {
                     req.files.id_passport.forEach(async docs => {
-                        await helper.storeDocDetails(docs)
+                        await helper.storeDocDetails(applicat_id, docs)
                     });
                 }
 
                 if (req.files.proof_of_pay) {
                     req.files.proof_of_pay.forEach(async docs => {
-                        await helper.storeDocDetails(docs)
+                        await helper.storeDocDetails(applicat_id, docs)
                     });
                 }
 
                 if (req.files.cliic_card) {
                     req.files.prove_of_residence.forEach(async docs => {
-                        await helper.storeDocDetails(docs)
+                        await helper.storeDocDetails(applicat_id, docs)
                     });
                 }
 
                 if (req.files.certificate) {
                     req.files.certificate.forEach(async docs => {
-                        await helper.storeDocDetails(docs)
+                        await helper.storeDocDetails(applicat_id, docs)
                     });
                 }
 
                 if (req.files.medical) {
                     req.files.medical.forEach(async docs => {
-                        await helper.storeDocDetails(docs)
+                        await helper.storeDocDetails(applicat_id, docs)
                     });
                 }
                 

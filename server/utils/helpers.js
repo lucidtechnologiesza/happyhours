@@ -3,13 +3,13 @@ const db = require('../config/db');
 const getApplicants = async () => {
 	
 	let info = {};
-	var data = await db.getData();
-	info.users = data;
+	info.users = await db.getData();
+	info.docs = await db.getDocs();
 
 	return info;
 }
 
-const storeDocDetails = async (docs) => {
+const storeDocDetails = async (applicat_id, docs) => {
 	try {
 		await db.documents(applicat_id, docs.originalname, docs.fieldname, docs.path);
 	} catch (error) {
