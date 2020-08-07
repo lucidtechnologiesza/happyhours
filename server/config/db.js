@@ -178,11 +178,12 @@ HappyHours.getDocs = function() {
 }
 
 HappyHours.findAdminByUsername = (username) => {
-    return new Promise((resolve, reject) => {
-        con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE email=?`, [username],
-            (error, result) => {
-                if (error) {
-                    return reject(error);
+	return new Promise((resolve, reject) => {
+		con.query(`SELECT * FROM ${process.env.DB_NAME}.admin WHERE email=?`,
+			[username],
+			(error, result) => {
+				if (error) {
+					return reject(error);
                 }
                 console.info(`${username} LOGGING IN AS ADMIN`)
                 return resolve(result[0]);
