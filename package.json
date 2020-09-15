@@ -1,5 +1,5 @@
 {
-  "engines" : { "node" : ">=14.4.0" },
+  "engines" : { "node" : "14.4.0" },
   "name": "express-backend-template",
   "version": "0.0.0",
   "description": "Preschool website",
